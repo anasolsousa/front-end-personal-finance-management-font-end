@@ -1,0 +1,147 @@
+
+.buttonBack {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color:#1e293b;
+    cursor: pointer;
+    transition: border-color 0.25s;
+    margin: 0px 10px;
+    display: flex;
+    margin-bottom: 70px;
+}
+  
+.buttonBack:hover {
+    border-color: #f07015aa;
+}
+  
+.buttonBack:focus,
+  .buttonBack:focus-visible {
+   outline: 2px auto -webkit-focus-ring-color;
+}
+
+.loginContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginBox {
+    max-height: 500px;
+    background-color: #1B263B;
+    border-radius: 12px;
+    padding: 40px;
+    width: 100%;
+    max-width: 300px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.loginHeader {
+    text-align: center;
+    margin-bottom: 30px;
+    color: white;
+}
+
+.loginHeader h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.logoIcon {
+    color: #4287f5;
+    font-weight: bold;
+}
+
+.loginHeader p {
+    color: #8892b0;
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.formGroup label {
+    color: white;
+    margin-bottom: 5px;
+    text-align: left;
+    font-size: 12px;
+}
+
+.formGroup input {
+    background-color: #181b20;
+    border: 1px solid #1F2937;
+    color: white;
+    padding: 8px;
+    border-radius: 6px;
+}
+
+.formGroup input:focus {
+    outline: 2px solid #4287f5;
+}
+
+.formOptions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.loginButton {
+    background-color: #4287f5;
+    color: white;
+    border: none;
+    padding:8px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.loginButton:hover {
+    background-color: #3a7bd5;
+}
+
+.socialDivider {
+    position: relative;
+    text-align: center;
+    color: #8892b0;
+}
+
+.socialDivider span {
+    background: #1B263B;
+    padding: 0 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.socialDivider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    border-top: 1px solid #415A77;
+    z-index: 0;
+}
+
+.signupLink {
+    text-align: center;
+    color: #8892b0;
+}
+
+.signupLink a {
+    color: #4287f5;
+    text-decoration: none;
+}
+  

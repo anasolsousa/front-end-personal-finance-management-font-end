@@ -2,13 +2,12 @@ import {useNavigate } from 'react-router-dom';
 import styles from "./styles.module.css";
 import { FormEvent, useState } from 'react';
 
-function Admin() {
-
-    const navigate = useNavigate();
+function AdminLogin() {
 
     const [email, setEmail] = useState("");
-    const [password, setPasswoord] = useState("");
-    
+    const [password, setPassword] = useState("");
+    const navigate = useNavigate();
+
     async function handleLoginAdmin(event:FormEvent<HTMLFormElement>) {
 
         event.preventDefault();
@@ -22,7 +21,7 @@ function Admin() {
             const response = await fetch("http://127.0.0.1:8000/api/auth/admin/login",{
                method: "POST",
                headers: {
-                 "Content-TYpe": "application/json"
+                 "Content-Type": "application/json"
                },
                body: JSON.stringify({
                 email:email,
@@ -33,10 +32,12 @@ function Admin() {
             const data = await response.json();
 
             if(response.ok){
-                localStorage.setItem("token", data.token)
+
+                localStorage.setItem("token", data.token);
+
                 navigate("/homeAdmin");
-                console.log("token")
-                console.log("DEU")
+                console.log(data.token);
+                console.log("O meu token", data.token)
             } else{
                 alert(data.message || "Error logging in. Check your credentials.");
             }}
@@ -64,12 +65,26 @@ function Admin() {
                     <form className={styles.loginForm} onSubmit={handleLoginAdmin}>
                         <div className={styles.formGroup}>
                             <label htmlFor="email">Email</label>
-                                <input placeholder="your@email.com" type='email' onChange={(event) => setEmail(event.target.value)} required/>
+                                <input
+                                    type='email'
+                                    value={email}
+                                    autoComplete="email"
+                                    placeholder="your@email.com"
+                                    onChange={(event) => setEmail(event.target.value)} 
+                                    required
+                                />
                         </div>
 
                         <div className={styles.formGroup}>
                             <label htmlFor="password">Password</label>
-                            <input  placeholder="******" type='password' onChange={(event) => setPasswoord(event.target.value)} required/>
+                            <input  
+                                type='password'
+                                value={password}
+                                autoComplete="current-password"
+                                placeholder="******"  
+                                onChange={(event) => setPassword(event.target.value)} 
+                                required
+                            />
                         </div>
                         <button type="submit" className={styles.loginButton}>
                             Sign in
@@ -82,4 +97,4 @@ function Admin() {
     )
 }
 
-export default Admin
+export default AdminLogin;

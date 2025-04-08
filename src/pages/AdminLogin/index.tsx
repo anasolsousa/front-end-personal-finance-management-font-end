@@ -49,13 +49,13 @@ function AdminLogin() {
     return(
         
         <main>
-
-        <button className={styles.buttonBack}
-            onClick={() => {
-            navigate("/");
-            }}
-            >Back
-        </button>
+            <button className={styles.buttonBack}
+                onClick={() => {
+                navigate("/");
+                }}
+                >Back
+            </button>
+                
             <div className={styles.loginContainer}>
                 <div className={styles.loginBox}>
                     <div className={styles.loginHeader}>

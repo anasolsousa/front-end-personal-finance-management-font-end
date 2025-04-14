@@ -15,15 +15,12 @@ export function useCategories() {
     const token = localStorage.getItem("token");
     const navigate = useNavigate();
 
-    if (!isLoggedIn) {
-        setTimeout(() => {
-            navigate("/admin");
-        }, 100);
-        return null;
-    }
-
     useEffect(() => {
-        fetchCategory();
+        if (!isLoggedIn) {
+            navigate("/admin");
+        } else {
+            fetchCategory();
+        }
     }, []);
 
 
@@ -49,5 +46,8 @@ export function useCategories() {
         }
     }
 
-    return category;
+    return {
+        category,
+        refetch: fetchCategory, // aqui está a função para ser usada fora do hook
+    };
 }

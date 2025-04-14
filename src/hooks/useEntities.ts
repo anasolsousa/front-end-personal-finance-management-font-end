@@ -15,12 +15,14 @@ export function useEntities() {
     const token = localStorage.getItem("token");
     const navigate = useNavigate();
 
-    if (!isLoggedIn) {
-        setTimeout(() => {
+    // para nao retoranar null
+    useEffect(() => {
+        if (!isLoggedIn) {
             navigate("/admin");
-        }, 100);
-        return null;
-    }
+        } else {
+            fetchEntity();
+        }
+    }, []);
 
     useEffect(() => {
         fetchEntity();

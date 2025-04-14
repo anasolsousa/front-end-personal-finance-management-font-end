@@ -1,13 +1,15 @@
 import styles from "./styles.module.css";
 import { useNavigate } from "react-router-dom";
 import { BiCategory, BiListUl, BiSubdirectoryRight, BiCategoryAlt, BiLogOut } from "react-icons/bi";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import * as LucideIcons from 'lucide-react';
 import { useCategories } from "../../hooks/useCategories";
 import { useSubCategories } from "../../hooks/useSubCategories";
 import { useEntities } from "../../hooks/useEntities";
 import { useSubEntities } from "../../hooks/useSubEntities";
-
+import { CirclePlus } from "lucide-react";
+import { AddCategoryModal } from "../../components/AddCategoryModal";
+import { AddSubCategoryModal } from "../../components/AddSubCategoryModal";
 // Função para buscar o componente do ícone
 const getIconComponent = (iconName) => {
     // Tenta transformar o nome do ícone para a forma compatível com o pacote `lucide-react`
@@ -40,6 +42,11 @@ export function HomePageAdmin() {
     const token = localStorage.getItem("token");
     const navigate = useNavigate();
 
+    const [showModal, setShowModal] = useState<boolean>(false);
+
+    const openModal = () => setShowModal(true);
+    const closeModal = () => setShowModal(false);
+    
     const handleLogout = () => {
         localStorage.removeItem("token");
         navigate("/");
@@ -51,9 +58,9 @@ export function HomePageAdmin() {
         }, 100);
         return null;
     }
- 
+
     // hooks com fetch
-    const category = useCategories();
+    const {category, refetch} = useCategories();
     const subCategory = useSubCategories();
     const entity = useEntities();
     const subEntity = useSubEntities();
@@ -66,8 +73,7 @@ export function HomePageAdmin() {
     const subEntitiesOrdenadas = [...subEntity].sort((a,b) =>
         a.entity.name.localeCompare(b.entity.name)
     );
-
- 
+    
     return (
         <main>
             {isLoggedIn && (
@@ -168,8 +174,24 @@ export function HomePageAdmin() {
 
                             {activeSection === "category" && (
                                 <>
-                                    <h1>Category list</h1>
-                                    <h3> Pode editar ou apagar qualquer categoria </h3>
+                                    <div>
+                                        <h1>Category list</h1>
+                                        <h3> Pode editar ou apagar qualquer categoria </h3>
+                                    </div>
+                                    <div>
+                                        <button className={styles.buttonAddData}
+                                            onClick={openModal}
+                                        >
+                                            <CirclePlus/> 
+                                            <p>Add</p>
+                                        </button>
+                                    </div>
+                                    <AddCategoryModal 
+                                        token={token}
+                                        refetch={refetch}
+                                        closeModal={closeModal}
+                                        isOpen={showModal}
+                                    />
                                     <div className={styles.table}>
                                         {category.map((categoria) => (
                                              <div className={styles.row} key={categoria.id}>
@@ -183,8 +205,24 @@ export function HomePageAdmin() {
 
                             {activeSection === "subcategory" && (
                                 <>
+                                <div>
                                     <h1>Sub-Category list</h1>
                                     <h3> Pode editar ou apagar qualquer categoria </h3>
+                                </div>
+                                <div>
+                                        <button className={styles.buttonAddData}
+                                            onClick={openModal}
+                                        >
+                                            <CirclePlus/> 
+                                            <p>Add</p>
+                                        </button>
+                                    </div>
+                                    <AddSubCategoryModal 
+                                        token={token}
+                                        refetch={refetch}
+                                        closeModal={closeModal}
+                                        isOpen={showModal}
+                                    />
                                     <div className={styles.table}>
                                         {subCategoriasOrdenadas.map((item) => (
                                              <div className={styles.row} key={item.id}>
@@ -234,3 +272,4 @@ export function HomePageAdmin() {
 }
 
 export default HomePageAdmin;
+

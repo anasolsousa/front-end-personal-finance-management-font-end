@@ -20,17 +20,14 @@ export function useSubCategories() {
     const token = localStorage.getItem("token");
     const navigate = useNavigate();
 
-    if (!isLoggedIn) {
-        setTimeout(() => {
-            navigate("/admin");
-        }, 100);
-        return null;
-    }
-
+    // mudar esta parte
     useEffect(() => {
-        fetchSubCategory();
-    }, []);
-
+        if(!isLoggedIn) {
+            navigate("/admin");
+        } else{
+            fetchSubCategory();
+        }
+    },[]);
 
     async function fetchSubCategory() {
         try {
@@ -47,5 +44,8 @@ export function useSubCategories() {
         }
     }
 
-    return subCategory;
+    return {
+        subCategory,
+        refetchSub: fetchSubCategory, // aqui tambem 
+    };
 }

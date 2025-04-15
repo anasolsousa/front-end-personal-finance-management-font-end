@@ -26,7 +26,15 @@ export function AddCategoryModal({
     event.preventDefault();
 
     if (!name || !icon) {
-      alert("preencha os campos");
+      setAlertMessage('Preencha os campos todos');
+      setAlertType('error');
+
+      setTimeout(() => {
+        refetch(); 
+        setName(""); 
+        setIcon("");
+        setAlertMessage(''); // Limpa a mensagem depois
+      }, 1000);
       return;
     }
 
@@ -98,14 +106,8 @@ export function AddCategoryModal({
 
         {alertMessage && (
           <Alert severity={alertType}
-            variant="outlined"
-            className={styles.successAlert}
-            sx={{
-                color: '#10b981',
-                '& .MuiAlert-icon': {
-                  color: '#10b981', // cor do ícone
-                }
-            }}
+              variant="outlined"
+              className={styles.successAlert}
           >
           {alertMessage}
           </Alert>

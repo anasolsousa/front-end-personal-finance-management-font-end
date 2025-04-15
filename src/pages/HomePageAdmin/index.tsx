@@ -10,6 +10,9 @@ import { useSubEntities } from "../../hooks/useSubEntities";
 import { CirclePlus } from "lucide-react";
 import { AddCategoryModal } from "../../components/AddCategoryModal";
 import { AddSubCategoryModal } from "../../components/AddSubCategoryModal";
+
+
+
 // Função para buscar o componente do ícone
 const getIconComponent = (iconName) => {
     // Tenta transformar o nome do ícone para a forma compatível com o pacote `lucide-react`
@@ -61,7 +64,7 @@ export function HomePageAdmin() {
 
     // hooks com fetch
     const {category, refetch} = useCategories();
-    const subCategory = useSubCategories();
+    const {subCategory, refetchSub}  = useSubCategories();
     const entity = useEntities();
     const subEntity = useSubEntities();
 
@@ -210,27 +213,27 @@ export function HomePageAdmin() {
                                     <h3> Pode editar ou apagar qualquer categoria </h3>
                                 </div>
                                 <div>
-                                        <button className={styles.buttonAddData}
-                                            onClick={openModal}
-                                        >
-                                            <CirclePlus/> 
-                                            <p>Add</p>
-                                        </button>
-                                    </div>
-                                    <AddSubCategoryModal 
-                                        token={token}
-                                        refetch={refetch}
-                                        closeModal={closeModal}
-                                        isOpen={showModal}
-                                    />
-                                    <div className={styles.table}>
-                                        {subCategoriasOrdenadas.map((item) => (
-                                             <div className={styles.row} key={item.id}>
-                                                <div>{item.name}</div>
-                                                {getIconComponent(item.category.icon)}
-                                            </div>
-                                        ))}
-                                    </div>
+                                    <button className={styles.buttonAddData}
+                                        onClick={openModal}
+                                    >
+                                        <CirclePlus/> 
+                                        <p>Add</p>
+                                    </button>
+                                </div>
+                                <AddSubCategoryModal
+                                    token={token}
+                                    refetch={refetchSub}
+                                    closeModal={closeModal}
+                                    isOpen={showModal}
+                                />
+                                <div className={styles.table}>
+                                    {subCategoriasOrdenadas.map((item) => (
+                                            <div className={styles.row} key={item.id}>
+                                            <div>{item.name}</div>
+                                            {getIconComponent(item.category.icon)}
+                                        </div>
+                                    ))}
+                                </div>
                                 </>
                             )}
 

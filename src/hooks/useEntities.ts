@@ -7,7 +7,6 @@ type Entity = {
     icon: string;
 };
 
-
 export function useEntities() {
 
     const [entity, setEntity] = useState<Entity[]>([]);
@@ -24,24 +23,26 @@ export function useEntities() {
         }
     }, []);
 
-    useEffect(() => {
-        fetchEntity();
-    }, []);
-
     async function fetchEntity() {
         try {
             const response = await fetch("http://localhost:8000/api/auth/entities", {
                 headers: { "Authorization": `Bearer ${token}` }
             });
             if (response.ok) {
-                setEntity(await response.json());
+                const data = await response.json();
+                console.log("Dados recebidos:", data);
+                setEntity(data);
             } else {
-                console.error("Erro ao buscar entidades");
+                const errorText = await response.text();
+                console.error("Erro na requisição:", response.status, errorText);
             }
         } catch (error) {
-            console.error(error);
+            console.error("Erro de fetch:", error);
         }
     }
 
-    return entity;
+    return {
+        entity,
+        refetchEnity: fetchEntity
+    } 
 }

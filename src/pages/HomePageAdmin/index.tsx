@@ -8,12 +8,17 @@ import { useSubCategories } from "../../hooks/useSubCategories";
 import { useEntities } from "../../hooks/useEntities";
 import { useSubEntities } from "../../hooks/useSubEntities";
 import { CirclePlus } from "lucide-react";
-import { AddCategoryModal } from "../../components/AddCategoryModal";
-import { AddSubCategoryModal } from "../../components/AddSubCategoryModal";
+import { AddCategoryModal } from "../../components/AddSubAndCategory/AddCategoryModal";
+import { AddSubCategoryModal } from "../../components/AddSubAndCategory/AddSubCategoryModal";
+import { AddEntityModal } from "../../components/AddEntity/AddEntityModal";
+import { AddSubEntityModal } from "../../components/AddEntity/AddSubEnityModal";
+import { DeleteCategories } from "../../components/Delete/deleteCategories";
+import { DeleteSubCategories } from "../../components/Delete/deleteSubCategories";
+import { DeleteSubEnities } from "../../components/Delete/deleteSubEntities";
+import { DeleteEnities } from "../../components/Delete/deleteEntities";
 
 
-
-// Função para buscar o componente do ícone
+// Função capturar o componente do ícone
 const getIconComponent = (iconName) => {
     // Tenta transformar o nome do ícone para a forma compatível com o pacote `lucide-react`
     try {
@@ -65,8 +70,8 @@ export function HomePageAdmin() {
     // hooks com fetch
     const {category, refetch} = useCategories();
     const {subCategory, refetchSub}  = useSubCategories();
-    const entity = useEntities();
-    const subEntity = useSubEntities();
+    const {entity, refetchEnity} = useEntities();
+    const {subEntity, refetchSubEnity} = useSubEntities();
 
     // ordenar por categoria
     const subCategoriasOrdenadas = [...subCategory].sort((a,b) => 
@@ -143,29 +148,29 @@ export function HomePageAdmin() {
                                     <>
                                         <div>
                                             <h1>All</h1>
-                                            <h3> Pode editar ou apagar qualquer categoria </h3>
+                                            <h3>View all application records here. This page offers a complete overview of all data entered in the system, making monitoring and management easier.</h3>
                                         </div>
                                         <div className={styles.table}>
                                             {category.map((categoria) => (
-                                                <div className={styles.row} key={categoria.id}>
+                                                <div className={styles.rowAll} key={categoria.id}>
                                                     <div>{categoria.name}</div>
                                                     {getIconComponent(categoria.icon)}
                                                 </div>
                                             ))}
                                           {subCategoriasOrdenadas.map((item) => (
-                                                <div className={styles.row}  key={item.id}>
+                                                <div className={styles.rowAll}  key={item.id}>
                                                     <div>{item.name}</div>
                                                     {getIconComponent(item.category.icon)}
                                                 </div>
                                             ))}
                                             {entity.map((entity) => (
-                                               <div className={styles.row} key={entity.id}>
+                                               <div className={styles.rowAll} key={entity.id}>
                                                     <div>{entity.name}</div>
                                                     {getIconComponent(entity.icon)}
                                                 </div>
                                             ))}
                                             {subEntitiesOrdenadas.map((item) => (
-                                                <div className={styles.row} key={item.id}>
+                                                <div className={styles.rowAll} key={item.id}>
                                                     <div>{item.name}</div>
                                                     {getIconComponent(item.entity.icon)}
                                                 </div>
@@ -178,8 +183,8 @@ export function HomePageAdmin() {
                             {activeSection === "category" && (
                                 <>
                                     <div>
-                                        <h1>Category list</h1>
-                                        <h3> Pode editar ou apagar qualquer categoria </h3>
+                                        <h1>Category</h1>
+                                        <h3>Category management page. Create, edit or delete the main categories that structure the organization of your information and services</h3>
                                     </div>
                                     <div>
                                         <button className={styles.buttonAddData}
@@ -197,9 +202,17 @@ export function HomePageAdmin() {
                                     />
                                     <div className={styles.table}>
                                         {category.map((categoria) => (
-                                             <div className={styles.row} key={categoria.id}>
-                                                <div>{categoria.name}</div>
-                                                {getIconComponent(categoria.icon)}
+                                            <div className={styles.row} key={categoria.id}>
+                                                {/* botao para apagar */}
+                                                <DeleteCategories 
+                                                    id={categoria.id} 
+                                                    token={token} 
+                                                    refetch={refetch} 
+                                                />
+                                                <div className={styles.gap_label_Modal}>
+                                                    <div>{categoria.name}</div>
+                                                    {getIconComponent(categoria.icon)} {/* icon */}
+                                                </div>
                                             </div>
                                         ))}
                                     </div>
@@ -209,8 +222,8 @@ export function HomePageAdmin() {
                             {activeSection === "subcategory" && (
                                 <>
                                 <div>
-                                    <h1>Sub-Category list</h1>
-                                    <h3> Pode editar ou apagar qualquer categoria </h3>
+                                    <h1>SubCategory</h1>
+                                    <h3>Manage subcategories associated with each main category. A well-defined subcategory structure improves navigation and user experience.</h3>
                                 </div>
                                 <div>
                                     <button className={styles.buttonAddData}
@@ -227,10 +240,18 @@ export function HomePageAdmin() {
                                     isOpen={showModal}
                                 />
                                 <div className={styles.table}>
-                                    {subCategoriasOrdenadas.map((item) => (
-                                            <div className={styles.row} key={item.id}>
-                                            <div>{item.name}</div>
-                                            {getIconComponent(item.category.icon)}
+                                    {subCategoriasOrdenadas.map((subCategoria) => (
+                                        <div className={styles.row} key={subCategoria.id}>
+                                            {/* botao para apagar */}
+                                            <DeleteSubCategories 
+                                                id={subCategoria.id} 
+                                                token={token} 
+                                                refetch={refetchSub} 
+                                            />
+                                            <div className={styles.gap_label_Modal}>
+                                                <div>{subCategoria.name}</div>
+                                                {getIconComponent(subCategoria.category.icon)}
+                                            </div>
                                         </div>
                                     ))}
                                 </div>
@@ -239,31 +260,78 @@ export function HomePageAdmin() {
 
                             {activeSection === "entity" && (
                                 <>
-                                    <h1>Entity list</h1>
-                                    <h3> Pode editar ou apagar qualquer categoria </h3>
+                                <div>
+                                    <h1>Entity</h1>
+                                    <h3>Configure the main entities of the system. This area allows you to define the fundamental components that interact in your application, controlling their properties and relationships.</h3>
+                                </div>
+                                <div>
+                                    <button className={styles.buttonAddData}
+                                        onClick={openModal}
+                                    >
+                                        <CirclePlus/> 
+                                        <p>Add</p>
+                                    </button>
+                                </div>
+                                    <AddEntityModal 
+                                        token={token}
+                                        refetch={refetchEnity}
+                                        closeModal={closeModal}
+                                        isOpen={showModal}
+                                    />
                                     <div className={styles.table}>
                                         {entity.map((entity) => (
-                                             <div className={styles.row} key={entity.id}>
-                                                <div>{entity.name}</div>
-                                                {getIconComponent(entity.icon)}
+                                            <div className={styles.row} key={entity.id}>
+                                                {/* botao para apagar */}
+                                                <DeleteEnities
+                                                    id={entity.id} 
+                                                    token={token} 
+                                                    refetch={refetchEnity} 
+                                                />
+                                                <div className={styles.gap_label_Modal}>
+                                                    <div>{entity.name}</div>
+                                                    {getIconComponent(entity.icon)}
+                                                </div>
                                             </div>
                                         ))}
                                     </div>
                                 </>
                             )}
-
                             {activeSection === "subentity" && (
                                 <>
-                                    <h1>Sub-Entity list</h1>
-                                    <h3> Pode editar ou apagar qualquer categoria </h3>
-                                    <div className={styles.table}>
-                                        {subEntitiesOrdenadas.map((item) => (
-                                             <div className={styles.row} key={item.id}>
-                                                <div>{item.name}</div>
-                                                {getIconComponent(item.entity.icon)}
-                                            </div>
-                                        ))}
+                                <div>
+                                    <h1>SubEntity</h1>
+                                    <h3>Subentity administration area. Define the secondary elements that complement the main entities, allowing for a more refined organization of your data.</h3>
+                                </div>
+                                <div>
+                                    <button className={styles.buttonAddData}
+                                            onClick={openModal}
+                                        >
+                                            <CirclePlus/> 
+                                            <p>Add</p>
+                                        </button>
                                     </div>
+                                        <AddSubEntityModal 
+                                            token={token}
+                                            refetch={refetchSubEnity}
+                                            closeModal={closeModal}
+                                            isOpen={showModal}
+                                        />
+                                <div className={styles.table}>
+                                    {subEntitiesOrdenadas.map((subEntities) => (
+                                        <div className={styles.row} key={subEntities.id}>
+                                            {/* botao para apagar */}
+                                            <DeleteSubEnities 
+                                                id={subEntities.id} 
+                                                token={token} 
+                                                refetch={refetchSubEnity} 
+                                            />
+                                            <div className={styles.gap_label_Modal}>
+                                                <div>{subEntities.name}</div>
+                                                {getIconComponent(subEntities.entity.icon)}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
                                 </>
                             )}
                         </div>

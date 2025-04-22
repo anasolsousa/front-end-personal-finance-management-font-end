@@ -20,15 +20,12 @@ export function useSubEntities() {
     const token = localStorage.getItem("token");
     const navigate = useNavigate();
 
-    if (!isLoggedIn) {
-        setTimeout(() => {
-            navigate("/admin");
-        }, 100);
-        return null;
-    }
-
     useEffect(() => {
-        fetchSubEntity();
+        if (!isLoggedIn) {
+            navigate("/admin");
+        } else {
+            fetchSubEntity();
+        }
     }, []);
 
    async function fetchSubEntity() {
@@ -46,5 +43,8 @@ export function useSubEntities() {
           }
       }
 
-    return subEntity;
+    return{
+        subEntity,
+        refetchSubEnity: fetchSubEntity
+    }
 }

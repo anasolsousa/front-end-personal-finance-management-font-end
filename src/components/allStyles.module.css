@@ -1,0 +1,146 @@
+.successAlert{
+    position: absolute;
+    right: 90px;
+    bottom: 70px;
+}
+
+
+/* Modal e botoes */
+
+.modal form{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 20px;
+  margin-left: 5px;
+}
+
+.modal{
+    margin-bottom: 50px;
+}
+
+
+.modal label {
+    color: white;
+    margin-bottom: 5px;
+    text-align: left;
+    font-size: 12px;
+}
+
+input::placeholder {
+    color: #475569;
+  }
+
+.modal input {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid #1F2937;
+    color: rgb(255, 255, 255);
+    padding: 8px;
+    border-radius: 6px;
+}
+
+.modal input:focus {
+    outline: 2px solid #e66b1375;
+}
+
+.modalButtonPrimary {
+    display: flex;
+    align-items: center;
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: 1px solid #e66b13;
+    background-color: rgba(230, 107, 19, 0.1);
+    color: #e66b13;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.modalButtonPrimary:hover {
+    background-color: rgba(230, 107, 19, 0.2);
+    color: white;
+    border-color: #e66b13;
+}
+.modalButtons{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+  
+  /* Botão secundário - Cancelar */
+.modalButtonSecondary {
+    display: flex;
+    align-items: center;
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #ccc;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+  
+.modalButtonSecondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-color: #666;
+}
+
+
+.successAlert{
+    position: absolute;
+    right: 90px;
+    bottom: 70px;
+}
+
+.basic_button{
+    /* background-color: #94a3b8 !important; */
+    border: 1px solid #ebebeb21 !important;
+    color: white !important;
+    text-transform: inherit !important;
+    padding: 4px 25px !important;
+}
+
+.basic_button:focus{
+    border: 2px solid #e66b1375 !important;
+}
+
+.basic_button:hover{
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.iconButtons{
+    display: flex;
+    align-items: center;
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.251);
+    font-weight: 500;
+    cursor: pointer;
+    background-color: transparent;
+    margin-top: 10px;
+    text-decoration: none;
+  }
+  
+  .iconButtons a{
+    text-decoration: none;
+    color: white;
+  }
+
+  
+.trashButton{
+    background-color: transparent;
+    border: transparent;
+}
+
+.trashButton2{
+    color: #e66b13 !important;
+    size: 8px !important;
+}
+  
+/* ---- */
+
+
+
+

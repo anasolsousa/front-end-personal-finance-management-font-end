@@ -34,7 +34,6 @@
     background-color: #020617;
     position: fixed;
     padding: 20px;
-    /* padding-bottom: 50px; */
     z-index: 1;
     height: 650px; /* o que ocupa na horizontal */
     width: 200px;
@@ -99,6 +98,8 @@
     border: 3px solid #020617;  /* creates padding around scroll thumb */
 }
 
+/* editar a barra de scrool */
+
 .section h1{
     text-align: left;
     font-size: 20px;
@@ -124,25 +125,40 @@
 }
 
 .section .row{
-    text-align: left;
     padding: 15px;
-    margin-top: 0px;
-    margin-bottom: 0px;
     color: #f8fafc;
-    display: flex; 
+    display: flex;
+    gap: 10px;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+.section .rowAll{
+    padding: 15px;
+    color: #f8fafc;
+    display: flex;
+    gap: 10px;
     flex-direction: row-reverse;
     justify-content: flex-end;
-    align-items: center;
+}
+
+.section .rowAll:hover{
+    background-color: #1e293b;
+}
+
+.section .rowAll:nth-child(even) { /* Pares: 2º, 4º, 6º... */
+    background-color: #1e293b;
+}
+
+.section .gap_label_Modal{
+    display: flex;
+    flex-direction: row-reverse;
     gap: 10px;
 }
 
 .section .row:hover{
     background-color: #1e293b;
 }
-
-/* .section p:nth-child(odd) {
-    background-color:#1e293b;
-} */
 
 .section .row:nth-child(even) { /* Pares: 2º, 4º, 6º... */
     background-color: #1e293b;
@@ -209,101 +225,13 @@ header{
     height: 16px;
     stroke: #e66b13;
     transition: stroke 0.2s ease;
-  }
+}
 
-  .buttonAddData:hover svg {
+.buttonAddData:hover svg {
     stroke: white;
-  }
-  
-  .buttonAddData:hover p {
+}
+
+.buttonAddData:hover p {
     color: white;
-  }
-
-/* form inserir  */
-
-.modal form{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    gap: 20px;
-    margin-left: 5px;
 }
 
-.modal{
-    margin-bottom: 50px;
-}
-
-
-.modal label {
-    color: white;
-    margin-bottom: 5px;
-    text-align: left;
-    font-size: 12px;
-}
-
-input::placeholder {
-    color: #475569;
-  }
-
-.modal input {
-    background-color: #94a3b8;
-    border: 1px solid #1F2937;
-    color: rgb(0, 0, 0);
-    padding: 8px;
-    border-radius: 6px;
-}
-
-.modal input:focus {
-    outline: 2px solid #e66b13;
-}
-
-.modalButtonPrimary {
-    display: flex;
-    align-items: center;
-    padding: 6px 14px;
-    border-radius: 8px;
-    border: 1px solid #e66b13;
-    background-color: rgba(230, 107, 19, 0.1);
-    color: #e66b13;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.modalButtonPrimary:hover {
-    background-color: rgba(230, 107, 19, 0.2);
-    color: white;
-    border-color: #e66b13;
-}
-.modalButtons{
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-}
-  
-  /* Botão secundário - Cancelar */
-.modalButtonSecondary {
-    display: flex;
-    align-items: center;
-    padding: 6px 14px;
-    border-radius: 8px;
-    border: 1px solid #444;
-    background-color: rgba(255, 255, 255, 0.05);
-    color: #ccc;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease;
-}
-  
-.modalButtonSecondary:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
-    border-color: #666;
-}
-
-
-.successAlert{
-    position: absolute;
-    right: 90px;
-    bottom: 70px;
-}

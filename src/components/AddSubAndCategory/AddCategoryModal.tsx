@@ -1,6 +1,7 @@
 import { FormEvent, useState } from "react";
-import styles from "../pages/HomePageAdmin/styles.module.css";
 import { Alert } from '@mui/material';
+import allSyles from "../allStyles.module.css";
+
 
 interface AddCategoryModalProps {
   token: string | null;
@@ -20,21 +21,21 @@ export function AddCategoryModal({
 
   
   const [alertMessage, setAlertMessage] = useState('');
-  const [alertType, setAlertType] = useState<'success' | 'error' | 'info'>('success');
+  const [alertType, setAlertType] = useState<'success' | 'error' | 'warning'>('success');
 
   async function handleAddCategory(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     if (!name || !icon) {
-      setAlertMessage('Preencha os campos todos');
-      setAlertType('error');
+      setAlertMessage("Oops! Don't forget to fill in all the fields.");
+      setAlertType('warning');
 
       setTimeout(() => {
         refetch(); 
         setName(""); 
         setIcon("");
         setAlertMessage(''); // Limpa a mensagem depois
-      }, 1000);
+      }, 2000);
       return;
     }
 
@@ -55,7 +56,7 @@ export function AddCategoryModal({
 
       if (response.ok) {
         // Chamar o callback de sucesso
-        setAlertMessage('Categoria inserida com sucesso!');
+        setAlertMessage('Category created successfully!');
         setAlertType('success');
 
         setTimeout(() => {
@@ -66,12 +67,12 @@ export function AddCategoryModal({
           setAlertMessage(''); // Limpa a mensagem depois
         }, 2000);
       } else {
-        setAlertMessage('Por favor, preencha o campo corretamente.');
+        setAlertMessage("Oops! Don't forget to fill in all the fields.");
         setAlertType('error');
       }
     } catch (e) {
       console.log(e);
-      setAlertMessage('Erro ao conectar com o servidor');
+      setAlertMessage('Server’s not responding. Please try again');
       setAlertType('error');
     }
   }
@@ -79,8 +80,8 @@ export function AddCategoryModal({
   if (!isOpen) return null;
 
   return (
-    <div className={styles.modalOverlay}>
-      <div className={styles.modal}>
+    <div className={allSyles.modalOverlay}>
+      <div className={allSyles.modal}>
         <form onSubmit={handleAddCategory}>
           <label>
             <input
@@ -98,19 +99,26 @@ export function AddCategoryModal({
               onChange={(e) => setIcon(e.target.value)}
             />
           </label>
-          <div className={styles.modalButtons}>
-            <button type="submit" className={styles.modalButtonPrimary}>Guardar</button>
-            <button type="button" onClick={closeModal} className={styles.modalButtonSecondary}>Cancelar</button>
+          <div className={allSyles.modalButtons}>
+            <button type="submit" className={allSyles.modalButtonPrimary}>Guardar</button>
+            <button type="button" onClick={closeModal} className={allSyles.modalButtonSecondary}>Cancelar</button>
           </div>
         </form>
-
+        <button className={allSyles.iconButtons}>
+          <a target="_blank" href="https://lucide.dev/icons/">Icons</a>
+        </button>
+      
         {alertMessage && (
-          <Alert severity={alertType}
-              variant="outlined"
-              className={styles.successAlert}
-          >
-          {alertMessage}
-          </Alert>
+            <Alert severity={alertType}
+                variant="outlined"
+                className={allSyles.successAlert}
+                sx={{
+                    filter: 'brightness(1.4) saturate(1.5)',  
+                    boxShadow: '0 0 8px rgba(0, 0, 0, 0.1)'
+                }}
+            >
+            {alertMessage}
+            </Alert>
         )}
       </div>
     </div>

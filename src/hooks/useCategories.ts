@@ -7,7 +7,6 @@ type Category = {
     icon: string
 }
 
-
 export function useCategories() {
 
     const [category, setCategory] = useState<Category[]>([]);

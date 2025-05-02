@@ -104,10 +104,6 @@ export function AddCategoryModal({
             <button type="button" onClick={closeModal} className={allSyles.modalButtonSecondary}>Cancelar</button>
           </div>
         </form>
-        <button className={allSyles.iconButtons}>
-          <a target="_blank" href="https://lucide.dev/icons/">Icons</a>
-        </button>
-      
         {alertMessage && (
             <Alert severity={alertType}
                 variant="outlined"

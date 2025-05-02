@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { BiCategory, BiListUl, BiSubdirectoryRight, BiCategoryAlt, BiLogOut } from "react-icons/bi";
 import { useState } from "react";
 import * as LucideIcons from 'lucide-react';
+import { Pencil } from "lucide-react";
 import { useCategories } from "../../hooks/useCategories";
 import { useSubCategories } from "../../hooks/useSubCategories";
 import { useEntities } from "../../hooks/useEntities";
@@ -16,7 +17,13 @@ import { DeleteCategories } from "../../components/Delete/deleteCategories";
 import { DeleteSubCategories } from "../../components/Delete/deleteSubCategories";
 import { DeleteSubEnities } from "../../components/Delete/deleteSubEntities";
 import { DeleteEnities } from "../../components/Delete/deleteEntities";
+import { EditCategories } from "../../components/Edit/EditCategories";
+import { EditSubCategories } from "../../components/Edit/EditSubCategories";
+import { EditEntity } from "../../components/Edit/EditEntity";
+import { EditSubEntities } from "../../components/Edit/EditSubEntity";
 
+import Avatar from '@mui/material/Avatar';
+import { blueGrey } from '@mui/material/colors';
 
 // Função capturar o componente do ícone
 const getIconComponent = (iconName) => {
@@ -51,10 +58,30 @@ export function HomePageAdmin() {
     const navigate = useNavigate();
 
     const [showModal, setShowModal] = useState<boolean>(false);
-
     const openModal = () => setShowModal(true);
     const closeModal = () => setShowModal(false);
     
+    // category
+    const [editingCategoryId, setEditingCategoryId] = useState<string | number | null>(null);
+    const openEditModal = (id: string | number) => setEditingCategoryId(id);
+    const closeEditModal = () => setEditingCategoryId(null);
+
+    // subcategory
+    const [editingSubCategoryId, setEditingSubCategoryId] = useState<string | number | null>(null);
+    const openEditSubCategoryModal = (id: string | number) => setEditingSubCategoryId(id);
+    const closeEditSubCategoryModal = () => setEditingSubCategoryId(null);
+
+    // Entity
+    const [editingEntityId, setEditingEntityId] = useState<string | number | null>(null);
+    const openEditEntiyModal = (id: string | number) => setEditingEntityId(id);
+    const closeEditEntityModal = () => setEditingEntityId(null);
+
+    // SubEntity
+    const [editingSubEntityId, setEditingSubEntityId] = useState<string | number | null>(null);
+    const openEditSubEntiyModal = (id: string | number) => setEditingSubEntityId(id);
+    const closeEditSubEntityModal = () => setEditingSubEntityId(null);
+
+     
     const handleLogout = () => {
         localStorage.removeItem("token");
         navigate("/");
@@ -96,9 +123,9 @@ export function HomePageAdmin() {
                         </div>
                         <div>
                             <button className={styles.buttonShowProfile}
-                                onClick={() => navigate("#")}
+                                onClick={() => navigate("/profileAdmin")}
                             >
-                                Profile
+                                <Avatar sx={{ bgcolor: blueGrey[200] }}>A</Avatar>
                             </button>
                         </div>
                     </header>
@@ -203,12 +230,32 @@ export function HomePageAdmin() {
                                     <div className={styles.table}>
                                         {category.map((categoria) => (
                                             <div className={styles.row} key={categoria.id}>
-                                                {/* botao para apagar */}
-                                                <DeleteCategories 
-                                                    id={categoria.id} 
+                                                
+                                                <div className={styles.buttonAction}>
+                                                    {/* botao para apagar */}
+                                                    <DeleteCategories 
+                                                        id={categoria.id} 
+                                                        token={token} 
+                                                        refetch={refetch} 
+                                                    />
+                                                    <div>
+                                                        <button onClick={() => openEditModal(categoria.id)} className={styles.pencilButton}>
+                                                            <Pencil className={styles.pencilButton2}/>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                {/* Botao de Editar */}
+                                                <EditCategories 
+                                                    id={categoria.id}
+                                                    name={categoria.name}
+                                                    icon={categoria.icon}
                                                     token={token} 
-                                                    refetch={refetch} 
+                                                    refetch={refetch}
+                                                    isCloseModalEdit={closeEditModal}
+                                                    isOpenModalEdit={editingCategoryId === categoria.id}
+                                                    openEditModal={openEditModal}
                                                 />
+
                                                 <div className={styles.gap_label_Modal}>
                                                     <div>{categoria.name}</div>
                                                     {getIconComponent(categoria.icon)} {/* icon */}
@@ -242,12 +289,36 @@ export function HomePageAdmin() {
                                 <div className={styles.table}>
                                     {subCategoriasOrdenadas.map((subCategoria) => (
                                         <div className={styles.row} key={subCategoria.id}>
-                                            {/* botao para apagar */}
-                                            <DeleteSubCategories 
-                                                id={subCategoria.id} 
+
+                                            <div className={styles.buttonAction}>
+                                                {/* botao para apagar */}
+                                                <DeleteSubCategories 
+                                                    id={subCategoria.id} 
+                                                    token={token} 
+                                                    refetch={refetchSub} 
+                                                />
+
+                                                {/* botao de editar */}
+                                                <div>
+                                                    <button onClick={() => openEditSubCategoryModal(subCategoria.id)} className={styles.pencilButton}>
+                                                        <Pencil className={styles.pencilButton2}/>
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            {/* passar as props*/}
+                                            <EditSubCategories
+                                                id={subCategoria.id}
+                                                name={subCategoria.name}
+                                                category_id={subCategoria.category.id}
+                                                category_name={subCategoria.category.name}
                                                 token={token} 
-                                                refetch={refetchSub} 
+                                                refetch={refetchSub}
+                                                isCloseModalEdit={closeEditSubCategoryModal}
+                                                isOpenModalEdit={editingSubCategoryId === subCategoria.id} // abre o modal do id correspondente
+                                                openEditModal={openEditSubCategoryModal}
                                             />
+
                                             <div className={styles.gap_label_Modal}>
                                                 <div>{subCategoria.name}</div>
                                                 {getIconComponent(subCategoria.category.icon)}
@@ -282,11 +353,29 @@ export function HomePageAdmin() {
                                         {entity.map((entity) => (
                                             <div className={styles.row} key={entity.id}>
                                                 {/* botao para apagar */}
-                                                <DeleteEnities
-                                                    id={entity.id} 
+                                                <div className={styles.buttonAction}>
+                                                    <DeleteEnities
+                                                        id={entity.id} 
+                                                        token={token} 
+                                                        refetch={refetchEnity} 
+                                                    />
+                                                    <div>
+                                                        <button onClick={() => openEditEntiyModal(entity.id)} className={styles.pencilButton}>
+                                                            <Pencil className={styles.pencilButton2}/>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                               <EditEntity
+                                                    id={entity.id}
+                                                    name={entity.name}
+                                                    icon={entity.icon}
                                                     token={token} 
-                                                    refetch={refetchEnity} 
-                                                />
+                                                    refetch={refetchEnity}
+                                                    isCloseModalEdit={closeEditEntityModal}
+                                                    isOpenModalEdit={editingEntityId === entity.id}
+                                                    openEditModal={openEditEntiyModal}
+                                               />
+
                                                 <div className={styles.gap_label_Modal}>
                                                     <div>{entity.name}</div>
                                                     {getIconComponent(entity.icon)}
@@ -319,12 +408,34 @@ export function HomePageAdmin() {
                                 <div className={styles.table}>
                                     {subEntitiesOrdenadas.map((subEntities) => (
                                         <div className={styles.row} key={subEntities.id}>
+                                            <div className={styles.buttonAction}>
                                             {/* botao para apagar */}
-                                            <DeleteSubEnities 
-                                                id={subEntities.id} 
+                                                <DeleteSubEnities 
+                                                    id={subEntities.id} 
+                                                    token={token} 
+                                                    refetch={refetchSubEnity} 
+                                                />
+                                                {/* botao de editar */}
+                                                <div>
+                                                    <button onClick={() => openEditSubEntiyModal(subEntities.id)} className={styles.pencilButton}>
+                                                        <Pencil className={styles.pencilButton2}/>
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                             {/* passar as props*/}
+                                             <EditSubEntities
+                                                id={subEntities.id}
+                                                name={subEntities.name}
+                                                entity_id={subEntities.entity.id}
+                                                entity_name={subEntities.entity.name}
                                                 token={token} 
-                                                refetch={refetchSubEnity} 
+                                                refetch={refetchSub}
+                                                isCloseModalEdit={closeEditSubEntityModal}
+                                                isOpenModalEdit={editingSubEntityId === subEntities.id} // abre o modal do id correspondente
+                                                openEditModal={openEditSubEntiyModal}
                                             />
+                                           
                                             <div className={styles.gap_label_Modal}>
                                                 <div>{subEntities.name}</div>
                                                 {getIconComponent(subEntities.entity.icon)}

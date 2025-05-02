@@ -140,7 +140,6 @@ export function AddSubCategoryModal({
                                     aria-haspopup="true"
                                     aria-expanded={open ? 'true' : undefined}
                                     onClick={handleClick}
-                                    // className={styles.buttonCategory}
                                     >
                                     {selectedCategory}
                                 </Button>

@@ -3,7 +3,7 @@ import App from "./App.tsx";
 import User from "./pages/User/index.tsx";
 import AdminLogin from "./pages/AdminLogin/index.tsx";
 import HomePageAdmin from "./pages/HomePageAdmin/index.tsx";
-
+import ProfileAdmin from "./pages/ProfileAdmin/index.tsx";
 
 export const router = createBrowserRouter([
     {
@@ -23,6 +23,10 @@ export const router = createBrowserRouter([
             {
                 path: "/homeAdmin",
                 element: <HomePageAdmin/>
+            },
+            {
+                path: "/profileAdmin",
+                element: <ProfileAdmin/>
             }
         ]
     }

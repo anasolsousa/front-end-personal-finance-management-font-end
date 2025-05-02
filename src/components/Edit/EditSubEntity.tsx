@@ -1,33 +1,53 @@
 import { useState } from "react";
-import { Alert } from '@mui/material';
+import { Alert, Button, MenuItem } from '@mui/material';
 import allSyles from "../allStyles.module.css";
 import { Pencil } from "lucide-react";
+import { Category } from "@mui/icons-material";
+import Menu from '@mui/material/Menu';
+import { useEntities } from "../../hooks/useEntities";
+import * as React from "react";
 
 // passar as props pelo botao no index - HomePage
-interface EditCategoriesProps {
+interface EditSubEntityProps {
   id: string | number;
   name: string;
-  icon: string;
+  entity_id: string;
+  entity_name:string;
   token: string | null;
   refetch: () => void;
   isCloseModalEdit: () => void;
   isOpenModalEdit: boolean;
-  openEditModal: (id: string | number, name: string, icon: string) => void;
+  openEditModal: (id: string | number, name: string, categoryID: string) => void;
 }
 
-export function EditCategories({
+export function EditSubEntities({
   id,
-  name, 
-  icon, 
+  name,
+  entity_id, 
+  entity_name,
   token, 
   refetch, 
   isCloseModalEdit, 
   isOpenModalEdit,
   openEditModal
-}: EditCategoriesProps){
+}: EditSubEntityProps){
 
-    const [categoryName, setCategoryName] = useState(name);
-    const [categoryIcon, setCategoryIcon] = useState(icon);
+    const [subEntityName, setSubEntityName] = useState(name);
+    const[entityID, setEntityID] = useState(entity_id);
+   
+    // material ui
+    const [selectedEntity, setSelectedEntity] = useState<string>(entity_name)
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    // adicionar a lista de categorias
+    const { entity } = useEntities();
 
     const [isUpdating, setIsUpdating] = useState(false);
     const [alertMessage, setAlertMessage] = useState('');
@@ -42,13 +62,13 @@ export function EditCategories({
         return;
       }
 
-      if(categoryName === name && categoryIcon === icon) {
+      if(subEntityName === name && entityID === entity_id) {
         setAlertMessage('Nenhuma alteração feita.');
         setAlertType('warning');
         return;
       }
 
-      if(!categoryIcon || !categoryName){
+      if(!subEntityName || !entityID){
         setAlertMessage("Oops! Don't forget to fill in all the fields.");
         setAlertType('warning');
         return;
@@ -56,7 +76,7 @@ export function EditCategories({
 
       setIsUpdating(true);
     try {
-      const response = await fetch(`http://localhost:8000/api/auth/categories/${id}`, {
+      const response = await fetch(`http://localhost:8000/api/auth/subEntity/${id}`, {
         method: "PATCH",
         headers: {
           "Authorization": `Bearer ${token}`,
@@ -64,13 +84,13 @@ export function EditCategories({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: categoryName,
-          icon: categoryIcon
+          name: subEntityName,
+          entity_id: entityID
         })
       });
 
       if (response.ok) {
-        setAlertMessage('Category updated successfully!');
+        setAlertMessage('SubCategory updated successfully!');
         setAlertType('success');
         
         setTimeout(() => {
@@ -104,18 +124,49 @@ export function EditCategories({
               <label>
                 <input
                   type="text"
-                  id="categoryName"
-                  name="categoryName"
-                  value={categoryName}
-                  onChange={(e) => setCategoryName(e.target.value)}
+                  id="SubcategoryName"
+                  name="SubcategoryName"
+                  value={subEntityName}
+                  onChange={(e) => setSubEntityName(e.target.value)}
                 />
               </label>
               <label>
-                <input
-                  type="text"
-                  value={categoryIcon}
-                  onChange={(e) => setCategoryIcon(e.target.value)}
-                />
+                <div>
+                  <Button
+                    id="basic-button"
+                    aria-controls={open ? 'basic-menu' : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? 'true' : undefined}
+                    onClick={handleClick}
+                    variant="contained"
+                    sx={{
+                      textTransform: 'none',
+                      color: 'white',
+                      backgroundColor: '#1e2738'
+                    }}
+                  >
+                    {selectedEntity}
+                  </Button>
+                  <Menu
+                    id="basic-menu"
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                  >
+                    {entity.map((entidade) => (
+                      <MenuItem 
+                        key={entidade.id}
+                        onClick={() => {
+                          setSelectedEntity(entidade.name);
+                          setEntityID(entidade.id);
+                          handleClose();
+                        }}
+                      >
+                        {entidade.name}
+                      </MenuItem>
+                    ))}
+                  </Menu>
+                </div>
               </label>
               <div className={allSyles.modalButtons}>
                 <button type="submit" disabled={isUpdating} className={allSyles.modalButtonPrimary}>

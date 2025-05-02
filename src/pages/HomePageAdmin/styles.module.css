@@ -128,7 +128,6 @@
     padding: 15px;
     color: #f8fafc;
     display: flex;
-    gap: 10px;
     flex-direction: row-reverse;
     justify-content: space-between;
 }
@@ -186,11 +185,6 @@ header{
     position: fixed;
 }
 
-.buttonShowProfile:hover {
-    background-color: #1e293b; /* slate-800 */
-    border-color: #334155; /* slate-700 */
-  }
-
 .table{
     border: 1px solid rgba(255, 255, 255, 0.177);
     border-radius: 8px;
@@ -233,5 +227,23 @@ header{
 
 .buttonAddData:hover p {
     color: white;
+}
+
+
+.pencilButton{
+    background-color: transparent !important;
+    border: transparent !important;
+}
+
+.pencilButton2{
+    color: #e66b13 !important;
+    width: 18px !important;
+    height: 18px !important;
+}
+
+
+.buttonAction{
+    display: flex;
+    flex-direction: row-reverse;
 }
 

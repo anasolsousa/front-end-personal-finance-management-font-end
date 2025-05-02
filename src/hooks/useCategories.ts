@@ -36,6 +36,7 @@ export function useCategories() {
                 const data = await response.json();
                 console.log("Dados recebidos:", data);
                 setCategory(data);
+                localStorage.setItem("categories", JSON.stringify(data));
             } else {
                 const errorText = await response.text();
                 console.error("Erro na requisição:", response.status, errorText);
@@ -45,8 +46,16 @@ export function useCategories() {
         }
     }
 
+    // Função para salvar categorias atualizadas no localStorage
+    const saveCategories = (updatedCategories: Category[]) => {
+        localStorage.setItem("categories", JSON.stringify(updatedCategories));
+        setCategory(updatedCategories);
+    };
+
     return {
         category,
         refetch: fetchCategory, // aqui está a função para ser usada fora do hook
+        saveCategories // Nova função para salvar no localStorage
+        
     };
 }

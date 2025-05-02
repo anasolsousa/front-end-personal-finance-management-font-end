@@ -16,7 +16,8 @@
 }
 
 .modal{
-    margin-bottom: 50px;
+    /* muda o tamenho quando esta aberto o modal de editar */
+    margin-bottom: 10px; 
 }
 
 
@@ -136,11 +137,14 @@ input::placeholder {
 
 .trashButton2{
     color: #e66b13 !important;
-    size: 8px !important;
+    width: 18px !important;
+    height: 18px !important;
 }
   
 /* ---- */
 
 
-
+.css-1tktgsa-MuiPaper-root-MuiPopover-paper-MuiMenu-paper{
+    background-color: transparent !important;
+}
 

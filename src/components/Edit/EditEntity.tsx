@@ -4,7 +4,7 @@ import allSyles from "../allStyles.module.css";
 import { Pencil } from "lucide-react";
 
 // passar as props pelo botao no index - HomePage
-interface EditCategoriesProps {
+interface EditEntityProps {
   id: string | number;
   name: string;
   icon: string;
@@ -15,7 +15,7 @@ interface EditCategoriesProps {
   openEditModal: (id: string | number, name: string, icon: string) => void;
 }
 
-export function EditCategories({
+export function EditEntity({
   id,
   name, 
   icon, 
@@ -24,10 +24,10 @@ export function EditCategories({
   isCloseModalEdit, 
   isOpenModalEdit,
   openEditModal
-}: EditCategoriesProps){
+}: EditEntityProps){
 
-    const [categoryName, setCategoryName] = useState(name);
-    const [categoryIcon, setCategoryIcon] = useState(icon);
+    const [entityName, setEntityName] = useState(name);
+    const [entityIcon, setEntityIcon] = useState(icon);
 
     const [isUpdating, setIsUpdating] = useState(false);
     const [alertMessage, setAlertMessage] = useState('');
@@ -42,13 +42,13 @@ export function EditCategories({
         return;
       }
 
-      if(categoryName === name && categoryIcon === icon) {
+      if(entityName === name && entityIcon === icon) {
         setAlertMessage('Nenhuma alteração feita.');
         setAlertType('warning');
         return;
       }
 
-      if(!categoryIcon || !categoryName){
+      if(!entityName || !entityIcon){
         setAlertMessage("Oops! Don't forget to fill in all the fields.");
         setAlertType('warning');
         return;
@@ -56,7 +56,7 @@ export function EditCategories({
 
       setIsUpdating(true);
     try {
-      const response = await fetch(`http://localhost:8000/api/auth/categories/${id}`, {
+      const response = await fetch(`http://localhost:8000/api/auth/entities/${id}`, {
         method: "PATCH",
         headers: {
           "Authorization": `Bearer ${token}`,
@@ -64,13 +64,13 @@ export function EditCategories({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: categoryName,
-          icon: categoryIcon
+          name: entityName,
+          icon: entityIcon
         })
       });
 
       if (response.ok) {
-        setAlertMessage('Category updated successfully!');
+        setAlertMessage('Entity updated successfully!');
         setAlertType('success');
         
         setTimeout(() => {
@@ -104,17 +104,17 @@ export function EditCategories({
               <label>
                 <input
                   type="text"
-                  id="categoryName"
-                  name="categoryName"
-                  value={categoryName}
-                  onChange={(e) => setCategoryName(e.target.value)}
+                  id="entityName"
+                  name="entityName"
+                  value={entityName}
+                  onChange={(e) => setEntityName(e.target.value)}
                 />
               </label>
               <label>
                 <input
                   type="text"
-                  value={categoryIcon}
-                  onChange={(e) => setCategoryIcon(e.target.value)}
+                  value={entityIcon}
+                  onChange={(e) => setEntityIcon(e.target.value)}
                 />
               </label>
               <div className={allSyles.modalButtons}>

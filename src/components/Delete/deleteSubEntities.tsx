@@ -70,7 +70,7 @@ export function DeleteSubEnities({ id, token, refetch }: DeleteSubEnitiesProps) 
           // Ícone de carregamento quando estiver apagando
           <span></span> 
         ) : (
-          <Trash2 size={18} />
+          <Trash2 className={allSyles.trashButton2} />
         )}
       </button>
       {alertMessage && (

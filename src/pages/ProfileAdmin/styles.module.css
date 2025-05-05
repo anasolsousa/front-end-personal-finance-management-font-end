@@ -1,0 +1,64 @@
+
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.data{
+    margin-left: 20px;
+
+}
+.name{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.name p{
+    margin: 0px;
+}
+
+.email{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 25px;
+}
+
+.email p{
+    margin: 0px;
+}
+
+.a{
+    color: #94a3b8;
+    font-size: 12px;
+}
+.b{
+ font-size: 15px;
+ text-transform: uppercase;
+}
+
+.buttonBack {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color:#1e293b;
+    cursor: pointer;
+    transition: border-color 0.25s;
+    margin: 0px 10px;
+}
+  
+.buttonBack:hover {
+    border-color: #f07015aa;
+}
+  
+.buttonBack:focus,
+  .buttonBack:focus-visible {
+   outline: 2px auto -webkit-focus-ring-color;
+}

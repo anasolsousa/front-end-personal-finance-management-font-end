@@ -1,14 +1,22 @@
 import { useEffect, useState } from "react";
+import style from "./styles.module.css";
 
 import Avatar from '@mui/material/Avatar';
 import { blueGrey } from '@mui/material/colors';
+import { useNavigate } from "react-router-dom";
 
+type admin = {
+  id:string,
+  name: string,
+  email: string
+}
 export function ProfileAdmin(){
 
-    const [admin, setAdmin] = useState([]);
+    const [admin, setAdmin] = useState<admin[]>([]);
 
     const isLoggedIn = !!localStorage.getItem("token"); // verificar se esta logado
     const token = localStorage.getItem("token");
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchProfile();
@@ -36,7 +44,30 @@ export function ProfileAdmin(){
 
     return(
         <div>
+          <header>
+            <button className={style.buttonBack}
+                  onClick={() => {
+                  navigate("/");
+                  }}
+                  >Back
+            </button>
             <Avatar sx={{ bgcolor: blueGrey[200], width: 56, height: 56 }}>A</Avatar>
+          </header>
+            
+            <div>
+              {admin.map((admin) => (
+                <div key={admin.id} className={style.data}>
+                  <div className={style.name}>
+                    <p className={style.a}>Name</p>
+                    <p  className={style.b}>{admin.name}</p>
+                  </div>
+                  <div className={style.email}>
+                    <p className={style.a}>Email</p>
+                    <p className={style.b}>{admin.email}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
         </div>
       
 

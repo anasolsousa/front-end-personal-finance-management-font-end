@@ -114,20 +114,11 @@ export function HomePageAdmin() {
             {isLoggedIn && (
                 <div className={styles.container}>
                     <header>
-                        <div>
-                            <button className={styles.buttonBack}
-                                onClick={() => navigate("/")}
-                            >
-                                Back
-                            </button>
-                        </div>
-                        <div>
-                            <button className={styles.buttonShowProfile}
-                                onClick={() => navigate("/profileAdmin")}
-                            >
-                                <Avatar sx={{ bgcolor: blueGrey[200] }}>A</Avatar>
-                            </button>
-                        </div>
+                        <button className={styles.buttonShowProfile}
+                            onClick={() => navigate("/profileAdmin")}
+                        >
+                            <Avatar sx={{ bgcolor: blueGrey[200] }}>A</Avatar>
+                        </button>
                     </header>
 
                     <div className={styles.grid}>

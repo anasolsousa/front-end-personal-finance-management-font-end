@@ -1,12 +1,14 @@
 import {useNavigate } from 'react-router-dom';
 import styles from "./styles.module.css";
 import { FormEvent, useState } from 'react';
+import LinearProgress from '@mui/material/LinearProgress';
 
 export function User() {
 
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const[password, setPasswoord] = useState("");
+    const [process, setProcess] = useState(false);
 
     async function handleLogiUser(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -15,6 +17,9 @@ export function User() {
             alert("Please enter a valid email address and password")
             return;
         }
+
+        setProcess(true);
+
         // ir buscar os dados
         try {
             const response = await fetch("http://localhost:8000/api/auth/user/login", {
@@ -32,13 +37,15 @@ export function User() {
 
             if(response.ok){
                 localStorage.setItem("token", data.token)
-                navigate("#");
+                navigate("/dashboard");
                 console.log("token")
             }else {
                 alert(data.message || "Error logging in. Check your credentials.");
             }}
             catch(e) {
                 console.log(e);
+            } finally {
+                setProcess(false);
             }
     }
 
@@ -81,6 +88,7 @@ export function User() {
                             Don't have an account? <a href="#">Sign up</a>
                         </div>
                     </form>
+                        {process ? <LinearProgress color="inherit" sx={{marginTop: 5}}/>: '' }
                 </div>
             </div> 
         </main>

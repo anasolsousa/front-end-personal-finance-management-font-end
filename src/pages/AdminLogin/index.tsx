@@ -1,12 +1,14 @@
 import {useNavigate } from 'react-router-dom';
 import styles from "./styles.module.css";
 import { FormEvent, useState } from 'react';
+import LinearProgress from '@mui/material/LinearProgress';
 
 function AdminLogin() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const [process, setProcess] = useState(false);
 
     async function handleLoginAdmin(event:FormEvent<HTMLFormElement>) {
 
@@ -16,6 +18,8 @@ function AdminLogin() {
             alert("Please enter a valid email address and password")
             return;
         }
+
+        setProcess(true);
 
         try{
             const response = await fetch("http://127.0.0.1:8000/api/auth/admin/login",{
@@ -43,6 +47,8 @@ function AdminLogin() {
             }}
             catch(e){
                 console.log(e);
+            } finally {
+                setProcess(false);
             }
         }
 
@@ -90,6 +96,7 @@ function AdminLogin() {
                             Sign in
                         </button>
                     </form>
+                        {process ? <LinearProgress color="inherit" sx={{marginTop: 5}}/>: '' }
                 </div>
             </div> 
         </main>

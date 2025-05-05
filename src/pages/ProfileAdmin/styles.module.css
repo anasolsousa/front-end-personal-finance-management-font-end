@@ -1,10 +1,13 @@
-
 header{
+    justify-content: flex-start;
+    margin-bottom: 100px;
+}
+
+.profile{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 50px;
+    gap: 50px;
+    margin-left: 20px;
 }
 
 .data{

@@ -47,13 +47,15 @@ export function ProfileAdmin(){
           <header>
             <button className={style.buttonBack}
                   onClick={() => {
-                  navigate("/");
+                  navigate("/homeAdmin");
                   }}
                   >Back
             </button>
-            <Avatar sx={{ bgcolor: blueGrey[200], width: 56, height: 56 }}>A</Avatar>
           </header>
-            
+          <div className={style.profile}>
+            <div>
+              <Avatar sx={{ bgcolor: blueGrey[200], width: 100, height: 100 }}>A</Avatar>
+            </div>
             <div>
               {admin.map((admin) => (
                 <div key={admin.id} className={style.data}>
@@ -68,6 +70,7 @@ export function ProfileAdmin(){
                 </div>
               ))}
             </div>
+          </div>
         </div>
       
 

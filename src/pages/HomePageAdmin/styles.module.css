@@ -5,6 +5,12 @@
     padding: 0 1rem;
   }
 
+.container header{
+    margin-top: 50px;
+    display: flex;
+    justify-content: flex-end;
+}
+
 .buttonBack {
     padding: 0.5rem 1rem;
     background-color: #1e293b; /* slate-800 */

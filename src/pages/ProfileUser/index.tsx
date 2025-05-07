@@ -72,6 +72,7 @@ export function ProfileUser(){
         
         // Salva a imagem no localStorage como Data URL
         localStorage.setItem('savedImage', imageDataUrl);
+        localStorage.setItem('UserName', avatarName);
       };
       
       // Lê o arquivo como Data URL (Base64)
@@ -91,11 +92,12 @@ export function ProfileUser(){
         </header>
         <div className={style.profile}>
           <div>
-            {selectedImage && (
-              <div>
+            {selectedImage ? (
                 <Avatar sx={{ bgcolor: blueGrey[200], width: 100, height: 100 }} src={selectedImage}/>
-              </div>
+            ) : (
+              <Avatar sx={{ bgcolor: blueGrey[200], width: 100, height: 100 }}>{avatarName}</Avatar>
             )}
+            
           </div>
           <div>
               {user && (

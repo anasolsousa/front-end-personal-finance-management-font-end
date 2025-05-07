@@ -212,6 +212,7 @@ export function HomePageAdmin() {
                                             <p>Add</p>
                                         </button>
                                     </div>
+                                    {/* isto vai renderizar o quee esta no ficheirop do addCategory */}
                                     <AddCategoryModal 
                                         token={token}
                                         refetch={refetch}
@@ -297,7 +298,7 @@ export function HomePageAdmin() {
                                                 </div>
                                             </div>
 
-                                            {/* passar as props*/}
+                                            {/* passar as props*/} 
                                             <EditSubCategories
                                                 id={subCategoria.id}
                                                 name={subCategoria.name}

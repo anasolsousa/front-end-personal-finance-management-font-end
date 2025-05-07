@@ -12,6 +12,7 @@ function Dashboard(){
     const isLoggedIn = !!localStorage.getItem("token");
     const token = localStorage.getItem("token");
     const navigate = useNavigate();
+    
 
     const handleLogout = () => {
         localStorage.removeItem("token");
@@ -25,6 +26,10 @@ function Dashboard(){
         return null;
     }
 
+    
+    const img = localStorage.getItem('savedImage');
+    const name = localStorage.getItem('UserName');
+
     return(
         <main>
             {isLoggedIn && (
@@ -33,7 +38,11 @@ function Dashboard(){
                         <button className={styles.buttonShowProfile}
                             onClick={() => navigate("/profileUser")}
                         >
-                            <Avatar sx={{ bgcolor: blueGrey[200] }}>A</Avatar>
+                            {img ? (
+                                <Avatar sx={{ bgcolor: blueGrey[200]}} src={img}/>
+                            ) : (
+                                <Avatar sx={{ bgcolor: blueGrey[200]}}>{name}</Avatar>
+                            )}
                         </button>
                     </div>
                     <div className={styles.grid}>

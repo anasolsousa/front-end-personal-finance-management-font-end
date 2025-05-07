@@ -2,6 +2,7 @@ import {useNavigate } from 'react-router-dom';
 import styles from "./styles.module.css";
 import { FormEvent, useState } from 'react';
 import LinearProgress from '@mui/material/LinearProgress';
+import Alert from '@mui/material/Alert';
 
 function AdminLogin() {
 
@@ -43,6 +44,7 @@ function AdminLogin() {
                 console.log(data.token);
                 console.log("O meu token", data.token)
             } else{
+                
                 alert(data.message || "Error logging in. Check your credentials.");
             }}
             catch(e){

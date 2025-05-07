@@ -6,6 +6,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 export function User() {
 
     const navigate = useNavigate();
+    const [id, setId] = useState("");
     const [email, setEmail] = useState("");
     const[password, setPasswoord] = useState("");
     const [process, setProcess] = useState(false);
@@ -25,20 +26,23 @@ export function User() {
             const response = await fetch("http://localhost:8000/api/auth/user/login", {
                 method: "POST",
                 headers: {
-                    "Content-TYpe": "application/json"
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
+                    id:id,
                     email:email,
                     password: password
                 }),
             });
 
             const data = await response.json();
+            console.log(data);
 
             if(response.ok){
                 localStorage.setItem("token", data.token)
+                localStorage.setItem("userId", data.user.id); // passar o id 
                 navigate("/dashboard");
-                console.log("token")
+                console.log("data")
             }else {
                 alert(data.message || "Error logging in. Check your credentials.");
             }}

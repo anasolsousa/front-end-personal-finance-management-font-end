@@ -128,23 +128,33 @@ export function HomePageAdmin() {
                                 <div className={styles.SidebarItems}>
                                     <div className={styles.SidebarItemGroup}>
                                         <div>
-                                            <a onClick={() => setActiveSection("all")}>
+                                            <a onClick={() => setActiveSection("all")}
+                                                className={activeSection === "all" ? styles.active : ""}
+                                                >
                                                 <BiListUl className={styles.icon} />
                                                 <span>All</span>
                                             </a>
-                                            <a onClick={() => setActiveSection("category")}>
+                                            <a onClick={() => setActiveSection("category")}
+                                                className={activeSection === "category" ? styles.active : ""}
+                                                >
                                                 <BiCategory className={styles.icon} />
                                                 <span>Category</span>
                                             </a>
-                                            <a onClick={() => setActiveSection("subcategory")}>
+                                            <a onClick={() => setActiveSection("subcategory")}
+                                                className={activeSection === "subcategory" ? styles.active : ""}
+                                                >
                                                 <BiSubdirectoryRight className={styles.icon} />
                                                 <span>Subcategory</span>
                                             </a>
-                                            <a onClick={() => setActiveSection("entity")}>
+                                            <a onClick={() => setActiveSection("entity")}
+                                                className={activeSection === "entity" ? styles.active : ""}
+                                                >
                                                 <BiCategoryAlt className={styles.icon} />
                                                 <span>Entity</span>
                                             </a>
-                                            <a onClick={() => setActiveSection("subentity")}>
+                                            <a onClick={() => setActiveSection("subentity")}
+                                                className={activeSection === "subentity" ? styles.active : ""}
+                                                >
                                                 <BiSubdirectoryRight className={styles.icon} />
                                                 <span>SubEntity</span>
                                             </a>
@@ -162,7 +172,7 @@ export function HomePageAdmin() {
                         {/* parte 2 */}
                         <div className={styles.section}>
                             <div className={styles.itemList}>
-                                {activeSection === "all" && (
+                                {activeSection === "all" &&  (
                                     <>
                                         <div>
                                             <h1>All</h1>

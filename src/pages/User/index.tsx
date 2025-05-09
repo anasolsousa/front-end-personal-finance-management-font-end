@@ -41,7 +41,7 @@ export function User() {
             if(response.ok){
                 localStorage.setItem("token", data.token)
                 localStorage.setItem("userId", data.user.id); // passar o id 
-                navigate("/dashboard");
+                navigate("/userPanel");
                 console.log("data")
             }else {
                 alert(data.message || "Error logging in. Check your credentials.");

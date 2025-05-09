@@ -63,6 +63,11 @@
     background-color: #2c4060;
 }
 
+.active{
+    background-color: #2c4060;
+}
+
+
 .icon {
     font-size: 20px;
 }

@@ -21,7 +21,7 @@ export function ProfileUser(){
 
   useEffect(() => {
 
-    const savedImage = localStorage.getItem('savedImage');
+    const savedImage = localStorage.getItem(`savedImage_${userId}`); // guarda a img no user atual 
       if(savedImage) {
         setSelectedImage(savedImage);
       }
@@ -71,7 +71,7 @@ export function ProfileUser(){
         setSelectedImage(imageDataUrl);
         
         // Salva a imagem no localStorage como Data URL
-        localStorage.setItem('savedImage', imageDataUrl);
+        localStorage.setItem(`savedImage_${userId}`, imageDataUrl);
         localStorage.setItem('UserName', avatarName);
       };
       
@@ -85,11 +85,12 @@ export function ProfileUser(){
         <header>
           <button className={style.buttonBack}
                 onClick={() => {
-                navigate("/dashboard");
+                navigate("/userPanel");
                 }}
                 >Back
           </button>
         </header>
+        
         <div className={style.profile}>
           <div>
             {selectedImage ? (

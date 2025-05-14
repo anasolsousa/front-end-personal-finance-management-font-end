@@ -18,6 +18,7 @@ export function ProfileUser(){
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState(null); // imgame avatar
+  const isLoggedIn = !!localStorage.getItem("token");
 
   useEffect(() => {
 
@@ -80,45 +81,56 @@ export function ProfileUser(){
     }
   };
 
+  if (!isLoggedIn) {
+    setTimeout(() => {
+        navigate("/user");
+    }, 100);
+    return null;
+  }
+
   return(
       <div>
-        <header>
-          <button className={style.buttonBack}
-                onClick={() => {
-                navigate("/userPanel");
-                }}
-                >Back
-          </button>
-        </header>
-        
-        <div className={style.profile}>
-          <div>
-            {selectedImage ? (
-                <Avatar sx={{ bgcolor: blueGrey[200], width: 100, height: 100 }} src={selectedImage}/>
-            ) : (
-              <Avatar sx={{ bgcolor: blueGrey[200], width: 100, height: 100 }}>{avatarName}</Avatar>
-            )}
+         {isLoggedIn && (
+          <>
+            <header>
+              <button className={style.buttonBack}
+                    onClick={() => {
+                    navigate("/userPanel");
+                    }}
+                    >Back
+              </button>
+            </header>
             
-          </div>
-          <div>
-              {user && (
-                  <div className={style.data}>
-                      <div className={style.name}>
-                          <p className={style.a}>Name</p>
-                          <p className={style.b}>{user.name}</p>
+            <div className={style.profile}>
+              <div>
+                {selectedImage ? (
+                    <Avatar sx={{ bgcolor: blueGrey[200], width: 100, height: 100 }} src={selectedImage}/>
+                ) : (
+                  <Avatar sx={{ bgcolor: blueGrey[200], width: 100, height: 100 }}>{avatarName}</Avatar>
+                )}
+                
+              </div>
+              <div>
+                  {user && (
+                      <div className={style.data}>
+                          <div className={style.name}>
+                              <p className={style.a}>Name</p>
+                              <p className={style.b}>{user.name}</p>
+                          </div>
+                          <div className={style.email}>
+                              <p className={style.a}>Email</p>
+                              <p className={style.b}>{user.email}</p>
+                          </div>
+                          <div className={style.email}>
+                            <p className={style.a}>Change photo</p>
+                            <p className={style.b}><input type="file" accept="image/" onChange={handleImageChange}/> </p>
+                          </div>
                       </div>
-                      <div className={style.email}>
-                          <p className={style.a}>Email</p>
-                          <p className={style.b}>{user.email}</p>
-                      </div>
-                      <div className={style.email}>
-                        <p className={style.a}>Change photo</p>
-                        <p className={style.b}><input type="file" accept="image/" onChange={handleImageChange}/> </p>
-                      </div>
-                  </div>
-              )}
-          </div>
-        </div>
+                  )}
+              </div>
+            </div>
+          </>
+         )}
       </div>
   )
 }

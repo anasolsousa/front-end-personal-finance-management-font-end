@@ -67,6 +67,7 @@ min-height: 100vh;
     margin-top: 60px;
     border: 1px solid #2c4060;
     height: 930px;
+    background-color: rgba(71, 85, 105, 0.318);
 }
 
 .SidebarItemGroup{

@@ -1,0 +1,139 @@
+
+/* page conteiner */
+.grid{
+    display:flex ;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 80px;
+}
+
+.section{
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    height: 670px;
+    /* para nao ultrapassar o sidebar */
+    max-width: calc(100% - 250px); 
+    overflow-x: auto;
+    height: 930px;
+}
+
+.sectionContent{
+    width: 75%;
+    height: 670px;
+    /* para nao ultrapassar o sidebar */
+    max-width: calc(100% - 250px); 
+    overflow-x: auto;
+    height: 930px;
+}
+
+
+.containerGrid{
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.card{
+    padding-left: 10px;
+    padding-right: 0px;
+    background-color: #6745c446;
+    border: 3px solid #281360;
+    border-radius: 0.75rem;
+    position: relative;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-around;
+    margin-bottom: 15px;
+
+    width: 380px;
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+
+.card:hover{
+    background-color: #6745c4b3;;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+
+.gridName{
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+    opacity: 0.9;
+    font-style: bold;
+    margin-top: 20px;
+}
+
+.gridType{
+    font-size: 0.800rem;
+    color: #ffffff;
+    opacity: 0.7;
+    margin: 5px;
+    text-transform: uppercase;
+}
+
+.gridAmount{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.gridColum1{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* editar a barra de scrool */
+.section::-webkit-scrollbar{
+    width: 12px;
+}
+
+.section::-webkit-scrollbar-track {
+    background: #020617; 
+    border-radius: 20px;       /* color of the tracking area */
+}
+  
+.section::-webkit-scrollbar-thumb {
+    background-color: #0f172a;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 3px solid #020617;  /* creates padding around scroll thumb */
+}
+
+table{
+    width: 90%;
+    margin-top: 50px;
+}
+
+.trHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    text-transform: uppercase;
+    font-size: 1rem;
+    color:#6745c4;
+}
+
+.tableContainer{
+    display: flex;
+    justify-content: center;
+}
+
+th{
+    background-color: #0f172a;
+    padding: 15px;
+}
+
+.trBody{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

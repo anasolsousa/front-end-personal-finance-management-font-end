@@ -1,12 +1,17 @@
 import { useNavigate } from "react-router-dom";
-import { BiCategory, BiCategoryAlt, BiListUl, BiLogOut, BiSubdirectoryRight } from "react-icons/bi";
+import { BiLogOut } from "react-icons/bi";
 import styles from "./styles.module.css";
-import { CirclePlus, Info} from "lucide-react";
+import { Info, LayoutDashboard, ArrowRightLeft, CreditCard, LibraryBig} from "lucide-react";
 import viteLogo from '/money.svg'
 import Avatar from '@mui/material/Avatar';
 import { blueGrey } from '@mui/material/colors';
-import { act, useState } from "react";
+import { useState } from "react";
 import { Dashboard } from "../../components/Dashbord";
+import { Transactions } from "../../components/Transactions";
+import { Wallets } from "../../components/Wallets";
+import { LearnMore } from "../../components/LearnMore";
+import { HelpCenter } from "../../components/HelpCenter";
+
 
 function UserPanel(){
 
@@ -62,25 +67,25 @@ function UserPanel(){
                                              <a onClick={() => setActiveSection("Dashbord")}
                                                 className={activeSection === "Dashbord" ? styles.active : ""}
                                                 >
-                                                <BiListUl className={styles.icon} />
+                                                <LayoutDashboard className={styles.icon} />
                                                 <span>Dashbord</span>
                                             </a>
                                             <a onClick={() => setActiveSection("Transactions")}
                                                 className={activeSection === "Transactions" ? styles.active : ""}
                                                 >
-                                                <BiCategory className={styles.icon} />
+                                                <ArrowRightLeft className={styles.icon} />
                                                 <span>Transactions</span>
                                             </a>
-                                            <a onClick={() => setActiveSection("Cards")}
-                                                className={activeSection === "Cards" ? styles.active : ""}
+                                            <a onClick={() => setActiveSection("Wallets")}
+                                                className={activeSection === "Wallets" ? styles.active : ""}
                                                 >
-                                                <BiSubdirectoryRight className={styles.icon} />
-                                                <span>Cards</span>
+                                                <CreditCard className={styles.icon} />
+                                                <span>Wallet</span>
                                             </a>
                                             <a onClick={() => setActiveSection("Learn More")}
                                                 className={activeSection === "Learn More" ? styles.active : ""}
                                                 >
-                                                <CirclePlus className={styles.icon} />
+                                                <LibraryBig className={styles.icon} />
                                                 <span> Learn More </span>
                                             </a>
                                         </div>
@@ -112,28 +117,28 @@ function UserPanel(){
                             <div className={styles.itemList}>
                                 {activeSection === "Transactions" && (
                                     <>
-                                        <p>Transactions</p>
+                                        <Transactions/>
                                     </>
                                 )}
                             </div>
                             <div className={styles.itemList}>
-                                {activeSection === "Cards" && (
+                                {activeSection === "Wallets" && (
                                     <>
-                                        <p>Cards</p>
+                                        <Wallets/>
                                     </>
                                 )}
                             </div>
                             <div className={styles.itemList}>
                                 {activeSection === "Learn More" && (
                                     <>
-                                        <p>Learn More</p>
+                                        <LearnMore/>
                                     </>
                                 )}
                             </div>
                             <div className={styles.itemList}>
                                 {activeSection === "Help Center" && (
                                     <>
-                                        <p>Help Center</p>
+                                        <HelpCenter/>
                                     </>
                                 )}
                             </div>

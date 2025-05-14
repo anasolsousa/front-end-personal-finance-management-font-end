@@ -14,7 +14,7 @@ export function ProfileAdmin(){
 
     const [admin, setAdmin] = useState<admin[]>([]);
 
-    const isLoggedIn = !!localStorage.getItem("token"); // verificar se esta logado
+    // const isLoggedIn = !!localStorage.getItem("token"); // verificar se esta logado
     const token = localStorage.getItem("token");
     const navigate = useNavigate();
 

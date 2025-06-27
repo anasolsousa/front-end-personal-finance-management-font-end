@@ -6,7 +6,7 @@ import viteLogo from '/money.svg'
 import Avatar from '@mui/material/Avatar';
 import { blueGrey } from '@mui/material/colors';
 import { useState } from "react";
-import { Dashboard } from "../../components/Dashbord";
+import { Dashboard } from "../../components/Dashboard";
 import { Transactions } from "../../components/Transactions";
 import { Wallets } from "../../components/Wallets";
 import { LearnMore } from "../../components/LearnMore";
@@ -20,7 +20,7 @@ function UserPanel(){
     const navigate = useNavigate();
     const userId = localStorage.getItem("userId");  
 
-    const [activeSection, setActiveSection] = useState<string>("Dashbord"); // saber qual a opção que vai ficar ativa
+    const [activeSection, setActiveSection] = useState<string>("Dashboard"); // saber qual a opção que vai ficar ativa
     
 
     const handleLogout = () => {
@@ -53,7 +53,8 @@ function UserPanel(){
                                 <Avatar sx={{ bgcolor: blueGrey[200]}}>{name}</Avatar>
                             )}
                         </button>
-                    </div>
+                    </div>        
+                <div>
                     <div className={styles.grid}>
                         <div className={styles.section}>
                             <div className={styles.sidebar}>
@@ -64,28 +65,28 @@ function UserPanel(){
                                                 <>Finoro</>
                                                 <img src={viteLogo} className={styles.logo} alt="Vite logo" />
                                             </p>
-                                             <a onClick={() => setActiveSection("Dashbord")}
-                                                className={activeSection === "Dashbord" ? styles.active : ""}
+                                             <a onClick={() => setActiveSection("Dashboard")}
+                                                className={activeSection === "Dashboard" ? styles.active : ""}
                                                 >
-                                                <LayoutDashboard className={styles.icon} />
-                                                <span>Dashbord</span>
+                                                <LayoutDashboard size={16}/>
+                                                <span>Dashboard</span>
                                             </a>
                                             <a onClick={() => setActiveSection("Transactions")}
                                                 className={activeSection === "Transactions" ? styles.active : ""}
                                                 >
-                                                <ArrowRightLeft className={styles.icon} />
+                                                <ArrowRightLeft size={16}/>
                                                 <span>Transactions</span>
                                             </a>
                                             <a onClick={() => setActiveSection("Wallets")}
                                                 className={activeSection === "Wallets" ? styles.active : ""}
                                                 >
-                                                <CreditCard className={styles.icon} />
+                                                <CreditCard size={16}/>
                                                 <span>Wallet</span>
                                             </a>
                                             <a onClick={() => setActiveSection("Learn More")}
                                                 className={activeSection === "Learn More" ? styles.active : ""}
                                                 >
-                                                <LibraryBig className={styles.icon} />
+                                                <LibraryBig size={16}/>
                                                 <span> Learn More </span>
                                             </a>
                                         </div>
@@ -93,11 +94,11 @@ function UserPanel(){
                                             <a onClick={() => setActiveSection("Help Center")}
                                                 className={activeSection === "Help Center" ? styles.active : ""}
                                                 >
-                                                <Info className={styles.icon} />
+                                                <Info size={16}/>
                                                 <span> Help Center </span>
                                             </a>
                                             <a onClick={handleLogout}>
-                                                <BiLogOut className={styles.icon} />
+                                                <BiLogOut size={16}/>
                                                 <span>Log-out</span>
                                             </a>
                                         </div>
@@ -108,7 +109,7 @@ function UserPanel(){
 
                         <div className={styles.sectionContent}>
                             <div className={styles.itemList}>
-                                {activeSection === "Dashbord" && (
+                                {activeSection === "Dashboard" && (
                                     <>
                                         <Dashboard/>
                                     </>
@@ -144,6 +145,7 @@ function UserPanel(){
                             </div>
                         </div>
                     </div>
+                </div>
                 </div>
                 )}
         </main>

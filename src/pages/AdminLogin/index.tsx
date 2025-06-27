@@ -55,15 +55,13 @@ function AdminLogin() {
         }
 
     return(
-        
         <main>
             <button className={styles.buttonBack}
                 onClick={() => {
-                navigate("/");
+                    navigate("/");
                 }}
                 >Back
             </button>
-                
             <div className={styles.loginContainer}>
                 <div className={styles.loginBox}>
                     <div className={styles.loginHeader}>
@@ -101,6 +99,7 @@ function AdminLogin() {
                         {process ? <LinearProgress color="inherit" sx={{marginTop: 5}}/>: '' }
                 </div>
             </div> 
+        
         </main>
         
     )

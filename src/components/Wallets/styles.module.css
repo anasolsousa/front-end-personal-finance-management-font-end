@@ -124,7 +124,7 @@ table{
     justify-content: center;
 }
 
-th{
+thead tr{
     background-color: #0f172a;
     padding: 15px;
 }
@@ -136,4 +136,12 @@ th{
     align-items: center;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.income{
+    color: green;
+}
+
+.expense{
+    color: red;
 }

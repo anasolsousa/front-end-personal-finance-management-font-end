@@ -55,6 +55,7 @@ input::placeholder {
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.2s ease, color 0.2s ease;
+    cursor: pointer;
 }
 
 .modalButtonPrimary:hover {
@@ -133,12 +134,14 @@ input::placeholder {
 .trashButton{
     background-color: transparent;
     border: transparent;
+    cursor: pointer;
 }
 
 .trashButton2{
     color: #e66b13 !important;
     width: 18px !important;
     height: 18px !important;
+    cursor: pointer;
 }
   
 /* ---- */

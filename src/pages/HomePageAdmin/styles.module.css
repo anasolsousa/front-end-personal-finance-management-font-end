@@ -245,17 +245,20 @@ header{
 .pencilButton{
     background-color: transparent !important;
     border: transparent !important;
+    cursor: pointer;
 }
 
 .pencilButton2{
     color: #e66b13 !important;
     width: 18px !important;
     height: 18px !important;
+    cursor: pointer;
 }
 
 
 .buttonAction{
     display: flex;
     flex-direction: row-reverse;
+    cursor: pointer;
 }
 

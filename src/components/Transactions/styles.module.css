@@ -1,0 +1,40 @@
+table{
+    width: 90%;
+    margin-top: 50px;
+}
+
+.trHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    text-transform: uppercase;
+    font-size: 1rem;
+    color:#6745c4;
+}
+
+.tableContainer{
+    display: flex;
+    justify-content: center;
+}
+
+thead tr{
+    background-color: #0f172a;
+    padding: 15px;
+}
+
+.trBody{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.income{
+    color: green;
+}
+
+.expense{
+    color: red;
+}

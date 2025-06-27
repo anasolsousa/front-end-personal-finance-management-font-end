@@ -89,7 +89,7 @@ export function User() {
                         </div>
 
                         <div className={styles.signupLink}>
-                            Don't have an account? <a href="#">Sign up</a>
+                            Don't have an account? <a href="/signUpUser">Sign up</a>
                         </div>
                     </form>
                         {process ? <LinearProgress color="inherit" sx={{marginTop: 5}}/>: '' }

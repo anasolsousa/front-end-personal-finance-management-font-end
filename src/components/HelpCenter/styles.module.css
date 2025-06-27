@@ -1,0 +1,87 @@
+
+.container{
+    padding: 20px;
+    /* height: 100vh;
+    overflow-y: auto; */
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.alineIcons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 8px;
+    margin-bottom: 0px;
+}
+
+.text{
+    color:#e2e8f0;
+    font-size: 14px;
+    margin-bottom: 50px;
+    margin-top: 0;
+}
+
+.indice{
+    font-size: 10px;
+    text-align: left;
+    color: #94a3b8;
+}
+
+h2{
+    text-align: center;
+    padding-top: 10px;
+    color: #fbbf24;
+    padding: 20px;
+    margin-bottom: 0;
+}
+
+.infoPrincipal{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 50px;
+}
+
+.infoPrincipal div{
+    padding: 20px;
+    color: #e2e8f0;
+    border-radius: 0px 20px;
+    width: 80%;
+    align-items: center;
+    width: calc(100% /3);
+    background: linear-gradient(135deg, #1e293b 0%, #11171f 100%);
+    font-size: 13px;
+}
+
+.rendi{
+    border-left: 3px solid #34d399;
+}
+
+.gastos{
+    border-left: 3px solid #f87171;
+}
+
+.dashboard{
+    border-left: 3px solid #f472b6;
+    
+}
+
+.poupa{
+    border-left: 3px solid #a78bfa;
+}
+
+.invest{
+    border-left: 3px solid #fbbf24;
+}
+
+.form{
+    border-left: 3px solid #22d3ee;
+}

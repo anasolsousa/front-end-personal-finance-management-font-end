@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react"
+import styles from "./styles.module.css"
+// import Wallets from "../Wallets/index"
 
-type transaction = {
+
+export type Transaction = {
     id: string,
     date: Date,
     notes: string | null,
@@ -9,10 +12,10 @@ type transaction = {
     payment_method: string | null, 
     account_id: string;
 
-entity: {
-       id: string;
-       name: string;
-       icon: string;
+    entity: {
+        id: string;
+        name: string;
+        icon: string;
     },
 
     sub_entity: {
@@ -34,7 +37,7 @@ entity: {
 
 export function Transactions(){
 
-    const [transactions, settransactions] = useState<transaction[]>([]);
+    const [transactions, setTransactions] = useState<Transaction[]>([]);
     const token = localStorage.getItem("token");
 
     useEffect(() => {
@@ -51,8 +54,8 @@ export function Transactions(){
 
             if(response.ok){
                 const data = await response.json();
-                settransactions(data);
-                console.log(data);
+                setTransactions(data);
+                console.log(transactions);
             } else{
                 console.error("error")
             }
@@ -60,26 +63,52 @@ export function Transactions(){
             console.error(error)
         }
     }
-
+    const lastTransaction = transactions[0];
+    
     return(
         <>
-            <h1>Transactions</h1>
-            {transactions.map((transaction) => (
-                <div key={transaction.id}>
-                    <p>Conta: {transaction.account_id}</p>
-                    <p>Valor: {transaction.amount}</p>
-                    <p>Date: {transaction.date.toString()}</p>
-                    <p>Notas: {transaction.notes}</p>
-                    <p>Metodo de pagamento: {transaction.payment_method}</p>
-                    <p>Tipo: {transaction.type}</p>
-
-                    <p>Categoria: {transaction.category.name}</p>
-                    <p>SubCategoria: {transaction.sub_category.name}</p>
-                    
-                    <p>Entidade: {transaction.entity.name}</p>
-                    <p>SubEntidade: {transaction.sub_entity.name}</p>
+        <h1>Transactions</h1>
+            <div className={styles.sectionContent}>
+                <div className={styles.tableContainer}>
+                    <table>
+                        <thead>
+                            <tr className={styles.trHeader}>
+                                <th>Account</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                                <th>Notes</th>
+                                <th>Payment Method</th>
+                                <th>Amount</th>
+                                <th>Type</th>
+                                <th>Category</th>
+                                <th>Subcategory</th>
+                                <th>Entity</th>
+                                <th>Subentity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {transactions.map((transaction) => (
+                                <tr className={styles.trBody} key={transaction.id}>
+                                    <td>{transaction.account_id}</td>
+                                    <td>{new Intl.NumberFormat('pt-PT', {
+                                            minimumFractionDigits: 2,
+                                            maximumFractionDigits: 2,
+                                        }).format(transaction.amount)}€</td>
+                                    <td>{new Date(transaction.date).toLocaleDateString("pt-PT")}</td>
+                                    <td>{transaction.notes}</td>
+                                    <td>{transaction.payment_method}</td>
+                                    <td className={transaction.type === 'income' ? styles.income : styles.expense}>{transaction.amount}</td>
+                                    <td>{transaction.type}</td>
+                                    <td>{transaction.category.name}</td>
+                                    <td>{transaction.sub_category.name}</td>
+                                    <td>{transaction.entity.name}</td>
+                                    <td>{transaction.sub_entity.name}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
-            ))}
+            </div>
         </>
     )
 }

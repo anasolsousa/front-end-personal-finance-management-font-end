@@ -2,13 +2,7 @@ import { useEffect, useState } from "react"
 import styles from "./styles.module.css";
 
 import { CirclePlus } from "lucide-react";
-
 import Grid from '@mui/material/Grid2';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
 
 export function Wallets(){
 
@@ -60,8 +54,8 @@ export function Wallets(){
                             <p> Add Card +</p>
                         </div>
                         {cards.map((card, index) => (
-                            // Cada item ocupa 12/4 = 3 colunas em ecrãs grandes, 6 em médios e 12 em pequenos
-                            <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+                            // Cada item ocupa 12/4 = 3 colunas em ecrãs grandes, 6 em médios e 12 em pequenos -> item xs={12} sm={6} md={4} lg={3}
+                            <div key={index}>
                                 <div className={styles.card}>
                                     <div className={styles.gridColum1}>
                                         <p className={styles.gridName}>{card.name}</p>
@@ -72,7 +66,7 @@ export function Wallets(){
                                         <p><CirclePlus/></p>
                                     </div>
                                 </div>
-                            </Grid>
+                            </div>
                         ))}
                     </Grid>
                 </div>
@@ -83,33 +77,14 @@ export function Wallets(){
                             <thead>
                                 <tr className={styles.trHeader}>
                                     <th>Category</th>
-                                    <th>|</th>
                                     <th>Date</th>
-                                    <th>|</th>
                                     <th>Amount</th>
-                                    <th>|</th>
                                     <th>Type</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* fazer o map */}
-                                <tr className={styles.trBody}>
-                                    <td>Alimentaco</td>
-                                    <td>20/30/2025</td>
-                                    <td>300€</td>
-                                    <td>+</td>
-                                </tr>
-                                <tr className={styles.trBody}>
-                                    <td>Alimentaco</td>
-                                    <td>20/30/2025</td>
-                                    <td>300€</td>
-                                    <td>+</td>
-                                </tr>
-                                <tr className={styles.trBody}>
-                                    <td>Alimentaco</td>
-                                    <td>20/30/2025</td>
-                                    <td>300€</td>
-                                    <td>+</td>
+                                <tr>
+                                  
                                 </tr>
                             </tbody>
                         </table>

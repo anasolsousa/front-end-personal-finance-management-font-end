@@ -271,13 +271,13 @@ export function HomePageAdmin() {
                             {activeSection === "subcategory" && (
                                 <>
                                 <div>
-                                    <h1>SubCategory</h1>
+                                    <h1>Subcategory</h1>
                                     <h3>Manage subcategories associated with each main category. A well-defined subcategory structure improves navigation and user experience.</h3>
                                 </div>
                                 <div>
                                     <button className={styles.buttonAddData}
                                         onClick={openModal}
-                                    >
+                                        >
                                         <CirclePlus/> 
                                         <p>Add</p>
                                     </button>

@@ -25,13 +25,13 @@ export function Transactions(){
                   <table className={styles.table}>
                     <thead className={styles.thead}>
                       <tr>
-                        <th>Conta</th>
-                        <th className={styles.right}>Montante</th>
-                        <th>Método Pagamento</th>
-                        <th>Tipo</th>
-                        <th>Sub Categoria</th>
-                        <th className={styles.space}>Sub Entidade</th>
-                        <th>Data</th>
+                        <th>Account</th>
+                        <th className={styles.right}>Amount</th>
+                        <th>Payment Method</th>
+                        <th>Type</th>
+                        <th>Subcategory</th>
+                        <th className={styles.space}>Subentity</th>
+                        <th>Date</th>
                       </tr>
                     </thead>
                     <tbody className={styles.tbody}>
@@ -92,70 +92,8 @@ export function Transactions(){
             </div>
           </div>
           <div className={styles.card_form}>
-            <p>form new transaction </p>
-
-            <AddTransaction/>
-            {/* <form className={styles.form_new_transaction}>
-                <div className={styles.formGroup}>
-                  <label>Transaction</label>
-                   <select id="opcoes" name="opcoes">
-                    <option value="">Selecione a transaction</option>
-                     <option value="">-- Seleciona --</option>
-                        <option>Opção 1</option>
-                        <option value="opcao2">Opção 2</option>
-                        <option value="opcao3">Opção 3</option>
-                  </select>
-                    <label htmlFor="date">date
-                      <input
-                        type='date'
-                        // onChange={(event) => setEmail(event.target.value)} 
-                        required
-                      />
-                    </label>
-
-                    <label htmlFor="text">notes
-                      <input
-                        type='text'
-                        // onChange={(event) => setEmail(event.target.value)} 
-                        required
-                      />
-                    </label>
-
-                    <label htmlFor="text">amount
-                      <input
-                        type='number'
-                        step=".01"
-                        // onChange={(event) => setEmail(event.target.value)} 
-                        required
-                      />
-                    </label>
-                    <label htmlFor="text">account_from
-                      <input
-                        type='number'
-                        step=".01"
-                        // onChange={(event) => setEmail(event.target.value)} 
-                        required
-                      />
-                    </label>
-                       
-                      
-                </div>
-
-                <div className={styles.formGroup}>
-                    <label htmlFor="password">Password</label>
-                    <input  
-                        type='password'
-                        // value={password}
-                        autoComplete="current-password"
-                        placeholder="******"  
-                        // onChange={(event) => setPassword(event.target.value)} 
-                        required
-                    />
-                </div>
-                <button type="submit" className={styles.loginButton}>
-                    Sign in
-                </button>
-            </form> */}
+            <p className={styles.title_form}>Add New Transaction</p>      
+              <AddTransaction/>
           </div>
         </div>
           {/* Podes adicionar aqui o formulário se quiseres, mantive só a tabela como pediste */}

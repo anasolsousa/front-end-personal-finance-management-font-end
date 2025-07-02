@@ -1,4 +1,4 @@
-/* 
+
 .formHeader {
     width: 130px;
     padding: 8px 10px;
@@ -89,7 +89,48 @@
     outline: none;
 }
 
+.InputAmount::-webkit-outer-spin-button,
+.InputAmount::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  width: 20px;
+  height: 40px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="15" height="25" viewBox="0 0 20 40"><polygon points="10,5 15,15 5,15" fill="%23ff6b35"/><polygon points="10,35 15,25 5,25" fill="%23ff6b35"/></svg>') no-repeat center;
+  cursor: pointer;
+}
+
+.InputAmount::-webkit-outer-spin-button:hover,
+.InputAmount::-webkit-inner-spin-button:hover {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="15" height="25" viewBox="0 0 20 40"><polygon points="10,5 15,15 5,15" fill="%23e55a2b"/><polygon points="10,35 15,25 5,25" fill="%23e55a2b"/></svg>') no-repeat center;
+}
+
 .dateInput::-webkit-calendar-picker-indicator {
   cursor: pointer;
   filter: brightness(0) saturate(100%) invert(20%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(80%) contrast(100%);
-}  */
+} 
+
+.formButton{
+    border-radius: 8px;
+    padding: 0.6em 1.2em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #ffffff;
+    cursor: pointer;
+
+    transition: border-color 0.25s;
+    border: 1px var(--orange) solid;
+    color: var(--orange);
+}
+
+.formButton:hover{
+    border-radius: 8px;
+    padding: 0.6em 1.2em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #fff5ee9c;
+    cursor: pointer;
+
+    transition: border-color 0.25s;
+    border: 1px var(--orange) solid;
+    color: var(--orange);
+}

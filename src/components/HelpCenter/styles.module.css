@@ -27,7 +27,7 @@
     margin-top: 0;
 }
 
-.indice{
+.name_page{
     font-size: 10px;
     text-align: left;
     color: #94a3b8;
@@ -50,7 +50,7 @@ h2{
     margin-bottom: 50px;
 }
 
-.infoPrincipal div{
+.infoPrincipal .cardBlue{
     padding: 20px;
     color: #e2e8f0;
     border-radius: 0px 20px;

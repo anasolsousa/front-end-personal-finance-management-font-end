@@ -30,7 +30,6 @@ export function useEntities() {
             });
             if (response.ok) {
                 const data = await response.json();
-                console.log("Dados recebidos:", data);
                 setEntity(data);
             } else {
                 const errorText = await response.text();

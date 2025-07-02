@@ -60,14 +60,14 @@
     overflow-x: auto;
     /* margin-top: 60px; */
     border: 1px solid #2c4060;
-    background-color: rgba(105, 95, 71, 0.318);
+    background-color: #1e293b
 }
 
 .SidebarItemGroup{
     display: flex;
     flex-direction: column;
     text-align: left;
-    background-color: #170f02;
+    background-color: var(--side_bar);
     position: fixed;
     padding: 20px;
     z-index: 1;

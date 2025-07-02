@@ -36,13 +36,11 @@ export function User() {
             });
 
             const data = await response.json();
-            console.log(data);
 
             if(response.ok){
                 localStorage.setItem("token", data.token)
                 localStorage.setItem("userId", data.user.id); // passar o id 
                 navigate("/userPanel");
-                console.log("data")
             }else {
                 alert(data.message || "Error logging in. Check your credentials.");
             }}
@@ -54,7 +52,6 @@ export function User() {
     }
 
     return(
-        
         <main>
             <button className={styles.buttonBack}
                 onClick={() => {

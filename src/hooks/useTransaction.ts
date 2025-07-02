@@ -32,7 +32,7 @@ export type Transaction = {
     }
 }
 
-export function Transactions(){
+export function useTransaction(){
 
     const [transactions, setTransactions] = useState<Transaction[]>([]);
     const token = localStorage.getItem("token");
@@ -52,7 +52,6 @@ export function Transactions(){
             if(response.ok){
                 const data = await response.json();
                 setTransactions(data);
-                console.log(transactions);
             } else{
                 console.error("error")
             }
@@ -62,6 +61,6 @@ export function Transactions(){
     }
 
     return{
-        setTransactions
+        transactions
     }
 }

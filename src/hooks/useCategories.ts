@@ -34,7 +34,6 @@ export function useCategories() {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log("Dados recebidos:", data);
                 setCategory(data);
                 localStorage.setItem("categories", JSON.stringify(data));
             } else {

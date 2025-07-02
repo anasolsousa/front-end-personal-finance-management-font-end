@@ -38,13 +38,11 @@ export function SignUpUser() {
             });
 
             const data = await response.json();
-            console.log(data);
 
             if(response.ok){
                 localStorage.setItem("token", data.token)
                 localStorage.setItem("userId", data.user.id); // passar o id 
                 navigate("/user");
-                console.log("data")
             }else {
                 alert(data.message || "Error logging in. Check your credentials.");
             }}

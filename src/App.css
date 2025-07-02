@@ -5,12 +5,17 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #0f172a;
+  background-color: var(--blue_app_background);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --orange: #f97316;
+  --blue_app_background: #0f172a;
+  --hover_button_orange: #f07015aa;
+  --side_bar: #020617;
 }
 
 #root {
@@ -46,14 +51,14 @@ body {
   /* font-size: 1em; */
   font-weight: 500;
   font-family: inherit;
-  background-color:#1e293b;
+  background-color:#4d7ece;
   cursor: pointer;
   transition: border-color 0.25s;
   margin: 0px 10px;
 }
 
 .button:hover {
-  border-color: #f07015aa;
+  border-color: var(--hover_button_orange);
 }
 
 .button:focus,

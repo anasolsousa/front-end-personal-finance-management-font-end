@@ -4,10 +4,12 @@ import {ArrowRightLeft} from "lucide-react";
 import { useTransaction } from "../../hooks/useTransaction";
 import { useAcconts } from "../../hooks/useAcconts";
 import { AddTransaction } from "../AddTransaction";
+import { useTransfer } from "../../hooks/useTransfer";
 
 export function Transactions(){
 
     const {transactions} = useTransaction();
+    const {transfer} = useTransfer();
     const {account} = useAcconts();
     const token = localStorage.getItem("token");
 
@@ -85,6 +87,18 @@ export function Transactions(){
                           <td>{new Date(transaction.date).toLocaleDateString("pt-PT")}</td>
 
                         </tr>
+                      ))}
+                      {transfer.map((transfer, index) => (
+                        <div>
+                           <tr
+                              key={transfer.id}
+                              className={`${styles.row} ${index % 2 === 0 ? styles.even : styles.odd}`}
+                              >
+                              {/* const accountName = account.find(account => account.id === transactions.account_id); */}
+                              <td>{account.find(a => a.id === transfer.account_to_id)?.name}</td>
+
+                            </tr>
+                        </div>
                       ))}
                     </tbody>
                   </table>

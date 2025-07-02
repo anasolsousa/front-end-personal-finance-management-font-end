@@ -3,9 +3,9 @@
     width: 130px;
     padding: 8px 10px;
     margin-bottom: 16px;
-    background: #f1c19f9c;
+    background: #cbd5e1;
     border: none;
-    border-radius: 8px;
+    border-radius: 5px;
     font-size: 14px;
     color: #333;
     outline: none;
@@ -22,7 +22,7 @@
     width: 130px;
     padding: 8px 10px;
     margin-bottom: 16px;
-    background: #f1c19f9c;
+    background: #cbd5e1;
     border: none;
     border-radius: 8px;
     font-size: 14px;
@@ -35,7 +35,7 @@
     width: 250px;
     padding: 8px 10px;
     margin-bottom: 16px;
-    background: #f1c19f9c;
+    background: #cbd5e1;
     border: none;
     border-radius: 8px;
     font-size: 14px;
@@ -47,7 +47,7 @@
     width: 269px;
     padding: 8px 10px;
     margin-bottom: 16px;
-    background: #f1c19f9c;
+    background: #cbd5e1;
     border: none;
     border-radius: 8px;
     font-size: 14px;
@@ -65,7 +65,7 @@
 .dateInput{
     padding: 8px 10px;
     margin-bottom: 16px;
-    background: #f1c19f9c;
+    background: #cbd5e1;
     border: none;
     border-radius: 8px;
     color: #333;
@@ -73,7 +73,7 @@
 }
 
 .dateInput:focus {
-  background:#f1c19f9c;
+  background:#cbd5e1;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
 }
 
@@ -81,7 +81,7 @@
     width:100px;
     padding: 8px 10px;
     margin-bottom: 16px;
-    background: #f1c19f9c;
+    background: #cbd5e1;
     border: none;
     border-radius: 8px;
     font-size: 14px;
@@ -118,8 +118,8 @@
     cursor: pointer;
 
     transition: border-color 0.25s;
-    border: 1px var(--orange) solid;
-    color: var(--orange);
+    border: 1px #cbd5e1 solid;
+    color: #cbd5e1;
 }
 
 .formButton:hover{

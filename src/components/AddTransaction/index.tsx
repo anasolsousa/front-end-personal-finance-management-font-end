@@ -1,11 +1,11 @@
 import { use, useState } from "react";
 import { useAcconts } from "../../hooks/useAcconts";
-import { InputLabel, MenuItem, Select } from "@mui/material";
 import { useCategories } from "../../hooks/useCategories";
 import { useSubCategories } from "../../hooks/useSubCategories";
 import style  from "./styles.module.css";
 import { useEntities } from "../../hooks/useEntities";
 import { useSubEntities } from "../../hooks/useSubEntities";
+
 
 export function AddTransaction(){
 
@@ -37,16 +37,15 @@ export function AddTransaction(){
 
 
     const [operactionType, setOperactionType ] = useState(""); // variavel para guardar a opcao do user
-    const [selectedCategory, setSelectedCategory] = useState<string>('Select Category')
     
     console.log("Dados que vou enviar:", {
         operactionType,
         date: date,
         notes: notes,
         amount: amount,
-        account_id: accountId,
         type: type,
-        payment_method: paymentMethod,
+        account_from_id: accountFrom,
+        account_to_id: accountTo,
         entity_id: entityId,
         sub_entity_id: subEntityId,
         category_id: categoryId,
@@ -113,6 +112,7 @@ export function AddTransaction(){
             });
 
             const data = await response.json();
+            console.log(response);
 
             if (response.ok) {
                 alert("sucesso");
@@ -137,31 +137,135 @@ export function AddTransaction(){
     return(
         <main>
             <form>
-                {/* selecionar o tipo de operacao */}
+                <div className={style.typeOperaction}>
+                    <select 
+                        value={operactionType}
+                        onChange={(e) => setOperactionType(e.target.value)}
+                        className={style.formHeader}
+                    >
+                        <option value="" disabled selected>Select type</option>
+                        <option value="Transfer">Transfer</option>
+                        <option value="Transaction">Transaction</option>
+                    </select>
+                </div>
                 <div>
-                    <div className={style.typeOperaction}>
-                        <select 
-                            value={operactionType}
-                            onChange={(e) => setOperactionType(e.target.value)}
-                            className={style.formHeader}
-                        >
-                            <option value="" disabled selected>Select type</option>
-                            <option value="Transfer">Transfer</option>
-                            <option value="Transaction">Transaction</option>
-                        </select>
-                    </div>
-                    <div>
-                        {operactionType === "Transaction"  && (
-                            <div>
-                                <div className={style.drop}>
-                                    <select className={style.formInput} value={type} onChange={(e) => setType(e.target.value)}>
-                                        <option value="" disabled selected>Type</option>
-                                        <option value="income">Income</option>
-                                        <option value="expense">Expense</option>
-                                    </select>
+                    {operactionType === "Transaction"  && (
+                        <div>
+                            <div className={style.drop}>
+                                <select className={style.formInput} value={type} onChange={(e) => setType(e.target.value)}>
+                                    <option value="" disabled selected>Type</option>
+                                    <option value="income">Income</option>
+                                    <option value="expense">Expense</option>
+                                </select>
 
-                                    <select className={style.drop} value={accountId} onChange={(e) => setAccountId(e.target.value)}>
-                                        <option value="" disabled selected>Account</option>
+                                <select className={style.drop} value={accountId} onChange={(e) => setAccountId(e.target.value)}>
+                                    <option value="" disabled selected>Account</option>
+                                        {account.map((a) => (
+                                            <option key={a.id} value={a.id}>
+                                                {a.name}
+                                            </option>
+                                        ))}
+                                </select>
+                            </div>
+                            {/* <button type="button" onClick={handleAddTransaction}>Submeter</button> */}
+                            <div className={style.formInfoImportant}>
+                                <input
+                                    type='date'
+                                    onChange={(e) => setDate(e.target.value)} 
+                                    required
+                                    className={style.dateInput}
+                                />
+                                
+                                <input
+                                    type='number'
+                                    step=".01"
+                                    onChange={(e) => setAmount(e.target.value)} 
+                                    required
+                                    className={style.InputAmount}
+                                    placeholder="Amount"
+                                />
+                            </div>
+                            
+                            <input
+                                type='text'
+                                onChange={(e) => setPaymentMethod(e.target.value)} 
+                                required
+                                className={style.formInput}
+                                placeholder="Payment Method"
+                            />
+                                
+                            <div className={style.drop}>  
+                                <select className={style.formSelect} value={categoryId} onChange={(e) => setCategoryId(e.target.value)}>
+                                    <option value="">Select category</option>
+                                    {category.map((cat) => (
+                                        <option key={cat.id} value={cat.id}>
+                                            {cat.name}
+                                        </option>
+                                    ))}
+                                </select>
+                                
+                                
+                                <select className={style.formSelect} value={subCategoryId} onChange={(e) => setSubCategoryId(e.target.value)}>
+                                    <option value="">Select Subcategory</option>
+                                    {subCategory.map((subCat) => (
+                                        <option key={subCat.id} value={subCat.id}>
+                                            {subCat.name}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div className={style.drop}> 
+
+                                <select className={style.formSelect} value={entityId} onChange={(e) => setEntityId(e.target.value)}>
+                                    <option value="">Select Entity</option>
+                                    {entity.map((entity) => (
+                                        <option key={entity.id} value={entity.id}>
+                                            {entity.name}
+                                        </option>
+                                    ))}
+                                </select>
+                                
+                                <select className={style.formSelect} value={subEntityId} onChange={(e) => setsubEntityId(e.target.value)}>
+                                    <option value="">Select Subentity</option>
+                                    {subEntity.map((sub) => (
+                                        <option key={sub.id} value={sub.id}>
+                                            {sub.name}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                                
+                            <input
+                                type='text'
+                                onChange={(e) => setNotes(e.target.value)} 
+                                required
+                                className={style.formInput}
+                                placeholder="Notes"
+                            />
+                        </div>
+                    )}
+                </div>
+                <div>
+                    {operactionType === "Transfer" && (
+                        <div>
+                            <div>
+                                <select className={style.formInput} value={type} onChange={(e) => setType(e.target.value)}>
+                                    <option value="" disabled selected>Type</option>
+                                    <option value="account_transfer">Account transfers</option>
+                                    <option value="saving">Saving</option>
+                                    <option value="investment">Investment</option>
+                                </select>
+                                <div className={style.drop}>
+                                    <select className={style.drop} value={accountFrom} onChange={(e) => setAccountFrom(e.target.value)}>
+                                        <option value="" disabled selected>Account From</option>
+                                            {account.map((a) => (
+                                                <option key={a.id} value={a.id}>
+                                                    {a.name}
+                                                </option>
+                                            ))}
+                                    </select>
+                                    <select className={style.drop} value={accountTo} onChange={(e) => setAccountTo(e.target.value)}>
+                                        <option value="" disabled selected>Account To</option>
                                             {account.map((a) => (
                                                 <option key={a.id} value={a.id}>
                                                     {a.name}
@@ -169,101 +273,86 @@ export function AddTransaction(){
                                             ))}
                                     </select>
                                 </div>
-                                {/* <button type="button" onClick={handleAddTransaction}>Submeter</button> */}
-                                <div className={style.formInfoImportant}>
+                                    {/* <button type="button" onClick={handleAddTransaction}>Submeter</button> */}
+                                    <div className={style.formInfoImportant}>
+                                        <input
+                                            type='date'
+                                            onChange={(e) => setDate(e.target.value)} 
+                                            required
+                                            className={style.dateInput}
+                                        />
+                                        
+                                        <input
+                                            type='number'
+                                            step=".01"
+                                            onChange={(e) => setAmount(e.target.value)} 
+                                            required
+                                            className={style.InputAmount}
+                                            placeholder="Amount"
+                                        />
+                                    </div>
+                                        
+                                    <div className={style.drop}>  
+                                        <select className={style.formSelect} value={categoryId} onChange={(e) => setCategoryId(e.target.value)}>
+                                            <option value="">Select category</option>
+                                            {category.map((cat) => (
+                                                <option key={cat.id} value={cat.id}>
+                                                    {cat.name}
+                                                </option>
+                                            ))}
+                                        </select>
+                                        
+                                        
+                                        <select className={style.formSelect} value={subCategoryId} onChange={(e) => setSubCategoryId(e.target.value)}>
+                                            <option value="">Select Subcategory</option>
+                                            {subCategory.map((subCat) => (
+                                                <option key={subCat.id} value={subCat.id}>
+                                                    {subCat.name}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                    <div className={style.drop}> 
+
+                                        <select className={style.formSelect} value={entityId} onChange={(e) => setEntityId(e.target.value)}>
+                                            <option value="">Select Entity</option>
+                                            {entity.map((entity) => (
+                                                <option key={entity.id} value={entity.id}>
+                                                    {entity.name}
+                                                </option>
+                                            ))}
+                                        </select>
+                                        
+                                        <select className={style.formSelect} value={subEntityId} onChange={(e) => setsubEntityId(e.target.value)}>
+                                            <option value="">Select Subentity</option>
+                                            {subEntity.map((sub) => (
+                                                <option key={sub.id} value={sub.id}>
+                                                    {sub.name}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                        
                                     <input
-                                        type='date'
-                                        onChange={(e) => setDate(e.target.value)} 
+                                        type='text'
+                                        onChange={(e) => setNotes(e.target.value)} 
                                         required
-                                        className={style.dateInput}
-                                    />
-                                    
-                                    <input
-                                        type='number'
-                                        step=".01"
-                                        onChange={(e) => setAmount(e.target.value)} 
-                                        required
-                                        className={style.InputAmount}
-                                        placeholder="Amount"
+                                        className={style.formInput}
+                                        placeholder="Notes"
                                     />
                                 </div>
-                                
-                                <input
-                                    type='text'
-                                    onChange={(e) => setPaymentMethod(e.target.value)} 
-                                    required
-                                    className={style.formInput}
-                                    placeholder="Payment Method"
-                                />
-                                    
-                                <div className={style.drop}>  
-                                    <select className={style.formSelect} value={categoryId} onChange={(e) => setCategoryId(e.target.value)}>
-                                        <option value="">Select category</option>
-                                        {category.map((cat) => (
-                                            <option key={cat.id} value={cat.id}>
-                                                {cat.name}
-                                            </option>
-                                        ))}
-                                    </select>
-                                    
-                                    
-                                    <select className={style.formSelect} value={subCategoryId} onChange={(e) => setSubCategoryId(e.target.value)}>
-                                        <option value="">Select Subcategory</option>
-                                        {subCategory.map((subCat) => (
-                                            <option key={subCat.id} value={subCat.id}>
-                                                {subCat.name}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </div>
-                                <div className={style.drop}> 
-
-                                    <select className={style.formSelect} value={entityId} onChange={(e) => setEntityId(e.target.value)}>
-                                        <option value="">Select Entity</option>
-                                        {entity.map((entity) => (
-                                            <option key={entity.id} value={entity.id}>
-                                                {entity.name}
-                                            </option>
-                                        ))}
-                                    </select>
-                                    
-                                    <select className={style.formSelect} value={subEntityId} onChange={(e) => setsubEntityId(e.target.value)}>
-                                        <option value="">Select Subentity</option>
-                                        {subEntity.map((sub) => (
-                                            <option key={sub.id} value={sub.id}>
-                                                {sub.name}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </div>
-                                    
-                                <input
-                                    type='text'
-                                    onChange={(e) => setNotes(e.target.value)} 
-                                    required
-                                    className={style.formInput}
-                                    placeholder="Notes"
-                                />
-
-                                <button type="button" className={style.formButton} onClick={handleAddTransaction}>
-                                    Submeter
-                                </button>
-                            </div>
-                        )}
-                    </div>
-
+                        </div>
+                    )}
                 </div>
-                
-                
-                {operactionType === "Transfer" && (
-                    <div>
-                        <button onClick={handleAddTransfer} className={style.formButton}>
-                            Submeter
-                        </button>
-                    </div>
+                {operactionType && (
+                    <button 
+                        type="button" 
+                        className={style.formButton} 
+                        onClick={handleOperactionType}
+                        >
+                        {operactionType === "Transfer" ? "Transferir" : "Adicionar Transação"}
+                    </button>
                 )}
-
-                
             </form>
         </main>
     );

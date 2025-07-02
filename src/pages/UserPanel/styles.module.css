@@ -60,7 +60,8 @@
     overflow-x: auto;
     /* margin-top: 60px; */
     border: 1px solid #2c4060;
-    background-color: #1e293b
+    /* background-color: #1e293b; */
+    background-color: rgb(56 189 248 / 11%);
 }
 
 .SidebarItemGroup{

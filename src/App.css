@@ -13,9 +13,9 @@
   -moz-osx-font-smoothing: grayscale;
 
   --orange: #f97316;
-  --blue_app_background: #0f172a;
+  --blue_app_background: #2d3748;
   --hover_button_orange: #f07015aa;
-  --side_bar: #020617;
+  --side_bar: #1d213c;
 }
 
 #root {

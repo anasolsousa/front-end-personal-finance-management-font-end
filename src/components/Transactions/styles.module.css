@@ -1,15 +1,17 @@
 .container{
     padding: 20px;
+    padding-top: 0px;
 }
 
 .name_page{
     font-size: 10px;
     text-align: left;
     color: #94a3b8;
+    padding-top: 0px;
 }
 
 .title_form{
-  color: #1d293f;
+  color: #ffffff;
   text-transform: uppercase;
   padding: 0.75rem 0.80rem;
   text-align: center;
@@ -27,6 +29,9 @@
   overflow: hidden;
   border-radius: 0.5rem;
   width: 70%;
+  padding: 20px;
+  padding-bottom: 100px;
+  background-color: #4a5568;
 }
 
 .card_form{
@@ -37,7 +42,7 @@
   
   width: 30%;
   max-height: 400px;
-  background-color: #f8fafc;
+  background-color: #4a5568;
   border-radius: 12px;
   padding: 50px;
   width: 90%;
@@ -45,7 +50,6 @@
 }
 
 .tableCard {
-  background-color: white;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   overflow: visible;
 }
@@ -71,19 +75,15 @@
     color: #ffffff;
 }
 
-.tbody tr {
-  background-color: #cbd5e1;
-}
-
 .row:hover {
-  background-color: #b7c1ce;
+  background-color: #94a3b8;
   transition: background-color 0.2s;
 }
 
 .tbody td {
   padding: 10px;
   font-size:12px;
-  color: #1d293f;
+  color: #ffffff;
   white-space: nowrap;
   text-align: left;
 }
@@ -114,9 +114,10 @@
   padding: 0.25rem 0.625rem;
   font-size: 0.75rem;
   font-weight: 500;
-  background-color: #dbeafe;
-  color: #1e40af;
+  background-color: #303747;
+  color: #f8fafc;
   border-radius: 9999px;
+  text-transform: capitalize;
 }
 
 .typeBadge {
@@ -129,19 +130,15 @@
 }
 
 .incomeBadge {
-  background-color: #6db16d78;
-  color: #2b8e51;
-/*   
-  background-color: #c8f8d9;
-  color: #166534; */
+  background-color: #c6f6d5;
+  color: #466749;
+  text-transform: capitalize;
 }
 
 .expenseBadge {
-
-  background-color: #ff736c92;
-  color: #ab3e1c;
-    /* background-color: #fed5ca;
-    color: #99361b; */
+  background-color: #fed7d7;
+  color: #c93030ba;
+  text-transform: capitalize;
 }
 
 
@@ -153,7 +150,7 @@
 .tooltipTrigger {
   cursor: pointer;
   font-size: 1.25rem;
-  color: #5a606c;
+  color: #d0d0d0;
   font-size: 12px;
 }
 

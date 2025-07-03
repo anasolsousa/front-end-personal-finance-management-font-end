@@ -3,14 +3,15 @@
     width: 130px;
     padding: 8px 10px;
     margin-bottom: 16px;
-    background: #cbd5e1;
+    background: #94a3b8;
     border: none;
     border-radius: 5px;
     font-size: 14px;
-    color: #333;
+    color: #ffffff;
     outline: none;
     font-size: 12px;
 }
+
 
 .drop{
     display: flex;
@@ -22,38 +23,40 @@
     width: 130px;
     padding: 8px 10px;
     margin-bottom: 16px;
-    background: #cbd5e1;
+    background: #94a3b8;
     border: none;
     border-radius: 8px;
     font-size: 14px;
-    color: #333;
+    color: #ffffff;
     outline: none;
     font-size: 12px;
 }
+
 
 .formInput{
     width: 250px;
     padding: 8px 10px;
     margin-bottom: 16px;
-    background: #cbd5e1;
+    background: #94a3b8;
     border: none;
     border-radius: 8px;
     font-size: 14px;
-    color: #333;    
+    color: #ffffff;    
     outline: none;
 }
+
 
 .inputAccount{
     width: 269px;
     padding: 8px 10px;
     margin-bottom: 16px;
-    background: #cbd5e1;
+    background: #94a3b8;
     border: none;
     border-radius: 8px;
-    font-size: 14px;
-    color: #333;    
+    font-size: 14px;  
     outline: none;
 }
+
 
 .formInfoImportant{
     display: flex;
@@ -62,30 +65,26 @@
 }
 
 
+
 .dateInput{
     padding: 8px 10px;
     margin-bottom: 16px;
-    background: #cbd5e1;
+    background: #94a3b8;
     border: none;
     border-radius: 8px;
-    color: #333;
+    color: white;
     outline: none;
-}
-
-.dateInput:focus {
-  background:#cbd5e1;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
 }
 
 .InputAmount{
     width:100px;
     padding: 8px 10px;
     margin-bottom: 16px;
-    background: #cbd5e1;
+    background: #94a3b8;
     border: none;
     border-radius: 8px;
     font-size: 14px;
-    color: #333;
+    color: white;
     outline: none;
 }
 
@@ -104,22 +103,18 @@
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="15" height="25" viewBox="0 0 20 40"><polygon points="10,5 15,15 5,15" fill="%23e55a2b"/><polygon points="10,35 15,25 5,25" fill="%23e55a2b"/></svg>') no-repeat center;
 }
 
-.dateInput::-webkit-calendar-picker-indicator {
-  cursor: pointer;
-  filter: brightness(0) saturate(100%) invert(20%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(80%) contrast(100%);
-} 
 
 .formButton{
     border-radius: 8px;
     padding: 0.6em 1.2em;
     font-weight: 500;
     font-family: inherit;
-    background-color: #ffffff;
+    background-color: transparent;
     cursor: pointer;
 
     transition: border-color 0.25s;
-    border: 1px #cbd5e1 solid;
-    color: #cbd5e1;
+    border: 1px #94a3b8 solid;
+    color: #94a3b8;
 }
 
 .formButton:hover{
@@ -127,10 +122,15 @@
     padding: 0.6em 1.2em;
     font-weight: 500;
     font-family: inherit;
-    background-color: #fff5ee9c;
+    background-color: #94a3b8;
     cursor: pointer;
 
     transition: border-color 0.25s;
-    border: 1px var(--orange) solid;
-    color: var(--orange);
+    border: 1px white solid;
+    color: #ffffff;
+}
+
+.drop:focus, .drop select:focus, .formHeader:focus, .formInput:focus, .InputAmount:focus, .dateInput:focus{
+    box-shadow: 0 0 0 1px white;
+    color: white;
 }

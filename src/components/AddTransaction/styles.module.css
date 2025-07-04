@@ -45,6 +45,9 @@
     outline: none;
 }
 
+.formInput::placeholder, .InputAmount::placeholder {
+    color: white;
+}
 
 .inputAccount{
     width: 269px;
@@ -63,8 +66,6 @@
     flex-direction: row;
     gap: 8px
 }
-
-
 
 .dateInput{
     padding: 8px 10px;
@@ -94,14 +95,26 @@
   margin: 0;
   width: 20px;
   height: 40px;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="15" height="25" viewBox="0 0 20 40"><polygon points="10,5 15,15 5,15" fill="%23ff6b35"/><polygon points="10,35 15,25 5,25" fill="%23ff6b35"/></svg>') no-repeat center;
+  background: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='15' height='25' viewBox='0 0 20 40'>\
+<polygon points='10,5 15,15 5,15' fill='%23ffffff'/>\
+<polygon points='10,35 15,25 5,25' fill='%23ffffff'/>\
+</svg>") no-repeat center;
+  background-color: #94a3b8;
   cursor: pointer;
+  border-radius: 4px;
 }
 
 .InputAmount::-webkit-outer-spin-button:hover,
 .InputAmount::-webkit-inner-spin-button:hover {
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="15" height="25" viewBox="0 0 20 40"><polygon points="10,5 15,15 5,15" fill="%23e55a2b"/><polygon points="10,35 15,25 5,25" fill="%23e55a2b"/></svg>') no-repeat center;
+  background: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='15' height='25' viewBox='0 0 20 40'>\
+<polygon points='10,5 15,15 5,15' fill='%23ffffff'/>\
+<polygon points='10,35 15,25 5,25' fill='%23ffffff'/>\
+</svg>") no-repeat center;
+  background-color: transparent; /* um tom mais escuro ao passar o rato */
 }
+
 
 
 .formButton{

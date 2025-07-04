@@ -131,14 +131,14 @@
 }
 
 .itemList::-webkit-scrollbar-track {
-    background: #020617; 
+    background: var(--side_bar); 
     border-radius: 20px;       /* color of the tracking area */
 }
   
 .itemList::-webkit-scrollbar-thumb {
-    background-color: #0f172a;    /* color of the scroll thumb */
+    background-color: #4a5568;    /* color of the scroll thumb */
     border-radius: 20px;       /* roundness of the scroll thumb */
-    border: 3px solid #020617;  /* creates padding around scroll thumb */
+    border: 3px solid var(--side_bar);  /* creates padding around scroll thumb */
 }
 
 /* editar a barra de scrool */

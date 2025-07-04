@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom";
+
 
 export type Transfer = {
     id: string,
@@ -35,17 +37,28 @@ export type Transfer = {
 export function useTransfer(){
 
     const [transfer, setTransfer] = useState<Transfer[]>([]);
+    const isLoggedIn = !!localStorage.getItem("token");
     const token = localStorage.getItem("token");
+    const navigate = useNavigate();
 
     useEffect(() => {
-        fetchTransactions();
+        fetchTransfer();
     },[]);
 
-    async function fetchTransactions() {
+     useEffect(() => {
+        if (!isLoggedIn) {
+            navigate("/user");
+        } else {
+            fetchTransfer();
+        }
+    }, []);
+
+    async function fetchTransfer() {
         try{
             const response = await fetch("http://localhost:8000/api/auth/transfer", {
                 headers:{
                     "Authorization": `Bearer ${token}`,
+                    "Accept": "application/json"
                 }
             });
 
@@ -61,6 +74,7 @@ export function useTransfer(){
     }
 
     return{
-        transfer
+        transfer,
+        refetchTransfer: fetchTransfer
     }
 }

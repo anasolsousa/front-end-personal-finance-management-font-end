@@ -18,7 +18,7 @@ export function useAcconts(){
 
     useEffect(() => {
         if(!isLoggedIn){
-            navigate("/");
+            navigate("/user");
         } else fetchAccount();
     }, [])
 
@@ -46,7 +46,8 @@ export function useAcconts(){
     }
 
     return {
-        account
+        account,
+        refetchAccount: fetchAccount
     }
 }
 

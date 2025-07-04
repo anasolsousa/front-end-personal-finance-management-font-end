@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom";
 
 export type Transaction = {
     id: string,
@@ -35,10 +36,14 @@ export type Transaction = {
 export function useTransaction(){
 
     const [transactions, setTransactions] = useState<Transaction[]>([]);
+    const isLoggedIn = !!localStorage.getItem("token");
     const token = localStorage.getItem("token");
-
+    const navigate = useNavigate();
+    
     useEffect(() => {
-        fetchTransactions();
+        if(!isLoggedIn){
+            navigate("/user");
+        } else fetchTransactions()
     },[]);
 
     async function fetchTransactions() {
@@ -46,6 +51,7 @@ export function useTransaction(){
             const response = await fetch("http://localhost:8000/api/auth/transaction", {
                 headers:{
                     "Authorization": `Bearer ${token}`,
+                    "Accept": "application/json"
                 }
             });
 
@@ -61,6 +67,7 @@ export function useTransaction(){
     }
 
     return{
-        transactions
+        transactions,
+        refetchTransactions: fetchTransactions
     }
 }
